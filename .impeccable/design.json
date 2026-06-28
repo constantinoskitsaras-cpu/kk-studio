@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-24T00:00:00.000Z",
+  "title": "Design System: KK Studio — Konstantinos Kitsaras",
+  "extensions": {
+    "colorMeta": {
+      "accent-lime": { "role": "primary", "displayName": "Electric Lime", "canonical": "#AAEE00", "tonalRamp": ["#1c2700", "#2f4100", "#456000", "#5c8000", "#7aaa00", "#96d100", "#aaee00", "#c2f64d", "#dbfa99"] },
+      "bg-black": { "role": "neutral", "displayName": "Showroom Black", "canonical": "#090909", "tonalRamp": ["#090909", "#111111", "#181818", "#1f1f1f", "#2a2a2a", "#3a3a3a", "#5a5a5a", "#7a7a7a", "#a8a8a8"] },
+      "text-primary": { "role": "neutral", "displayName": "Warm White", "canonical": "#EDEAE4", "tonalRamp": ["#2a2926", "#45433d", "#615e56", "#807c72", "#a09a8e", "#c4bdb0", "#edeae4", "#f4f2ee", "#fbfaf8"] },
+      "text-secondary": { "role": "neutral", "displayName": "Smoke Gray", "canonical": "#7A7A7A", "tonalRamp": ["#161616", "#262626", "#3a3a3a", "#525252", "#6a6a6a", "#7a7a7a", "#969696", "#b6b6b6", "#d8d8d8"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero and page H1s — the cinematic title card. Bebas Neue 400, one per fold." },
+      "headline": { "displayName": "Headline", "purpose": "Section, project, and pillar headings. Bebas Neue 400." },
+      "body": { "displayName": "Body", "purpose": "Standard prose, capped 65–75ch. Inter 400." },
+      "label": { "displayName": "Label", "purpose": "Uppercase tracked labels, meta, nav, buttons. Space Grotesk 500, short strings only." }
+    },
+    "shadows": [
+      { "name": "lime-hover-glow", "value": "drop-shadow(0 0 6px rgba(170,238,0,0.45))", "purpose": "The only shadow in the system — a light cue on interactive icons/labels at hover. Never ambient." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Primary expo ease for reveals, project-frame openings, and the lime trace draw." },
+      { "name": "ease-out-quart", "value": "cubic-bezier(0.25, 1, 0.5, 1)", "purpose": "Softer ease for image brightness/filter transitions." },
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for small state transitions (hover color/border, 200ms)." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" },
+      { "name": "content-max", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Lime-outlined CTA that fills lime on hover. Used for the one primary action per view.",
+      "html": "<a class=\"ds-btn-primary\">See the work</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.08em; color: #AAEE00; background: transparent; border: 1px solid #AAEE00; border-radius: 0; padding: 14px 32px; text-decoration: none; cursor: pointer; transition: all 200ms cubic-bezier(0.4,0,0.2,1); } .ds-btn-primary:hover { background: #AAEE00; color: #090909; } .ds-btn-primary:focus-visible { outline: 2px solid #AAEE00; outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet bordered button for secondary navigation actions.",
+      "html": "<a class=\"ds-btn-secondary\">View all work →</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.08em; color: #7A7A7A; background: transparent; border: 1px solid #262626; border-radius: 0; padding: 14px 32px; text-decoration: none; cursor: pointer; transition: all 200ms cubic-bezier(0.4,0,0.2,1); } .ds-btn-secondary:hover { border-color: #3A3A3A; color: #EDEAE4; } .ds-btn-secondary:focus-visible { outline: 2px solid #EDEAE4; outline-offset: 3px; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Form field on the contact page — surface fill, mid border, lime focus.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Your name\" />",
+      "css": ".ds-input { width: 100%; font-family: 'Inter', sans-serif; font-size: 1rem; color: #EDEAE4; background: #111111; border: 1px solid #262626; border-radius: 0; padding: 16px 20px; transition: border-color 200ms cubic-bezier(0.4,0,0.2,1); } .ds-input::placeholder { color: #3D3D3D; } .ds-input:focus { outline: none; border-color: #AAEE00; }"
+    },
+    {
+      "name": "Section Label",
+      "kind": "custom",
+      "refersTo": "label",
+      "description": "Signature hairline-flanked lime section marker. Used as voice, not a per-section eyebrow.",
+      "html": "<div class=\"ds-section-label\"><span class=\"ds-tick\"></span><span class=\"ds-label-text\">Selected Work</span><span class=\"ds-tick\"></span></div>",
+      "css": ".ds-section-label { display: flex; align-items: center; gap: 24px; } .ds-tick { display: block; height: 1px; width: 24px; flex-shrink: 0; background: #262626; } .ds-label-text { font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.12em; color: #AAEE00; }"
+    },
+    {
+      "name": "Social Icon Link",
+      "kind": "custom",
+      "refersTo": "label",
+      "description": "Interactive icon with the signature lime lift+glow hover cue.",
+      "html": "<a class=\"ds-icon-link\" aria-label=\"Instagram\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 2.2c3.2 0 3.6 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.16 15.58 2.15 15.2 2.15 12s.01-3.58.07-4.85C2.37 3.92 3.88 2.38 7.15 2.27 8.42 2.21 8.8 2.2 12 2.2zm0 3.64a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z\"/></svg></a>",
+      "css": ".ds-icon-link { display: inline-flex; color: #3D3D3D; transition: all 200ms cubic-bezier(0.16,1,0.3,1); cursor: pointer; } .ds-icon-link:hover { color: #AAEE00; transform: translateY(-2px); filter: drop-shadow(0 0 6px rgba(170,238,0,0.45)); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Showroom",
+    "overview": "The site is a premium automotive stage at night: a near-black room where a single machine is lit with intent, and everything else recedes into controlled darkness. Surfaces are deep black (#090909), type is warm-white (#EDEAE4), and a single electric lime (#AAEE00) appears like a key-light cue — never as decoration. It serves a portfolio whose primary visitor is a studio or recruiter evaluating Konstantinos for hire, built for fast judgment and leading with imagery, because the work is the argument. It rejects ArtStation-style thumbnail walls, SaaS/template scaffolding, and any hobbyist finish.",
+    "keyCharacteristics": [
+      "Near-black canvas; warm-white type; a single lime accent used at ≤10% of any screen.",
+      "Condensed display caps (Bebas Neue) for headings, technical sans labels (Space Grotesk), humanist body (Inter).",
+      "Sharp corners everywhere (0px radius) — no rounding, no soft cards.",
+      "Hairlines and vignettes instead of boxes and shadows; depth from light and tone, not elevation.",
+      "Motion is choreographed but quiet: expo ease-outs, staggered reveals, one drawn lime trace."
+    ],
+    "rules": [
+      { "name": "The One Light Rule", "body": "Lime is the key light. It appears on ≤10% of any screen and only to direct the eye — a bar, a trace, a ring, a hover. Lime fills are momentary, never resting.", "section": "colors" },
+      { "name": "The Floor Rule", "body": "#3D3D3D is decoration. Real body text is #EDEAE4 or, at minimum, #7A7A7A on black. Never set readable copy in muted gray.", "section": "colors" },
+      { "name": "The Title-Card Rule", "body": "Bebas Neue is for headings only. It never sets body copy; its drama depends on scale and scarcity.", "section": "typography" },
+      { "name": "The Stencil Rule", "body": "Space Grotesk is uppercase, tracked, and short. Never set a sentence or paragraph in it.", "section": "typography" },
+      { "name": "The No-Box Rule", "body": "Surfaces are separated by hairlines, tonal shift, or space — never by a shadowed card.", "section": "elevation" },
+      { "name": "The Glow-Is-A-Cue Rule", "body": "The only shadow permitted is the lime hover glow on interactive icons and labels. It signals interactivity; it is never ambient.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep lime to ≤10% of any screen — bar, trace, ring, hover, one fill at most.",
+      "Do set all readable copy in #EDEAE4 or #7A7A7A; reserve #3D3D3D for decoration. Verify body ≥4.5:1, large/bold ≥3:1 on black (WCAG AA).",
+      "Do lead with real project imagery in large framed windows — the work is the argument.",
+      "Do use sharp 0px corners, hairlines, and tonal shifts to structure the page.",
+      "Do pair the three voices on their contrast axis: Bebas Neue (display) / Inter (body) / Space Grotesk (labels).",
+      "Do honor prefers-reduced-motion with crossfade/instant fallbacks for every reveal and hover."
+    ],
+    "donts": [
+      "Don't present work as an ArtStation-style thumbnail grid — curate into large, deliberate frames.",
+      "Don't ship SaaS/template scaffolding: no card grids, no hero-metric template, no tiny tracked eyebrow above every section, no reflexive 01/02/03 markers.",
+      "Don't let anything read amateur or cheap — premium finish in every detail or it doesn't ship.",
+      "Don't add drop shadows, glassmorphism, or floating cards; the only shadow is the lime hover cue.",
+      "Don't round corners, gradient-fill text, or use side-stripe accents.",
+      "Don't set body copy in Space Grotesk or in all-caps; labels only, short strings."
+    ]
+  }
+}

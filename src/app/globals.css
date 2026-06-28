@@ -1,26 +1,182 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Tailwind v4 gates `hover:` behind @media (hover: hover), which fails to
+   match on some setups and makes hover effects look dead. Revert to plain
+   &:hover so cursor interactions always fire. */
+@custom-variant hover (&:hover);
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ── Design tokens via Tailwind v4 @theme ────────────────── */
+@theme {
+  /* Colors */
+  --color-kk-bg:              #090909;
+  --color-kk-surface:         #111111;
+  --color-kk-raised:          #181818;
+  --color-kk-border-subtle:   #1A1A1A;
+  --color-kk-border-mid:      #262626;
+  --color-kk-border-active:   #3A3A3A;
+  --color-kk-text-primary:    #EDEAE4;
+  --color-kk-text-secondary:  #7A7A7A;
+  --color-kk-text-muted:      #3D3D3D;
+  --color-kk-text-inverse:    #090909;
+  --color-kk-accent:          #AAEE00;
+  --color-kk-accent-dim:      #7AAA00;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Fonts */
+  --font-display: var(--font-bebas), 'Arial Narrow', sans-serif;
+  --font-ui:      var(--font-space-grotesk), sans-serif;
+  --font-body:    var(--font-inter), sans-serif;
+
+  /* Easing */
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-expo:   cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-standard:  cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Keyframes */
+  --animate-line-draw: line-draw 2.2s cubic-bezier(0.16,1,0.3,1) infinite;
+  @keyframes line-draw {
+    0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+    65%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+    100% { transform: scaleY(1); transform-origin: top; opacity: 0; }
+  }
+
+  --animate-ken-burns: ken-burns 2.5s cubic-bezier(0.16,1,0.3,1) forwards;
+  @keyframes ken-burns {
+    from { transform: scale(1.04); }
+    to   { transform: scale(1.0); }
   }
 }
 
+/* ── CSS variables for inline use ────────────────────────── */
+:root {
+  --kk-accent:          #AAEE00;
+  --kk-accent-ghost:    rgba(170, 238, 0, 0.08);
+  --kk-bg:              #090909;
+  --kk-surface:         #111111;
+  --kk-text-primary:    #EDEAE4;
+  --kk-text-secondary:  #7A7A7A;
+  --kk-text-muted:      #3D3D3D;
+  --kk-border-subtle:   #1A1A1A;
+  --kk-border-mid:      #262626;
+}
+
+/* ── Base reset ──────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--kk-bg);
+  color: var(--kk-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--kk-bg);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+}
+
+/* Bebas Neue ships a single weight (400). Heading classes request 700/800,
+   so disable synthetic bold to keep the real letterforms instead of faux-bold. */
+.font-display {
+  font-synthesis: none;
+}
+
+/* Project frame photos are grayscale-by-default and colorize on hover. On touch
+   devices there's no hover to lift it, so keep them full-colour there. */
+@media (hover: none) {
+  .frame-photo {
+    filter: none !important;
+  }
+}
+/* ── Selection ───────────────────────────────────────────── */
+::selection {
+  background-color: var(--kk-accent);
+  color: #090909;
+}
+
+/* ── Focus ───────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--kk-accent);
+  outline-offset: 3px;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--kk-bg); }
+::-webkit-scrollbar-thumb { background: #3A3A3A; }
+
+/* ── Navigation backdrop fallback ────────────────────────── */
+.nav-scrolled {
+  background-color: rgba(9, 9, 9, 0.95);
+}
+
+@supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+  .nav-scrolled {
+    background-color: rgba(9, 9, 9, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* ── Scroll line indicator ───────────────────────────────── */
+.scroll-line {
+  animation: line-draw 2.2s cubic-bezier(0.16,1,0.3,1) infinite;
+}
+
+/* ── Ken Burns — desktop only ────────────────────────────── */
+@media (min-width: 768px) {
+  .hero-image-animate {
+    animation: ken-burns 2.5s cubic-bezier(0.16,1,0.3,1) forwards;
+  }
+}
+
+/* ── Logo marquee ────────────────────────────────────────── */
+/* Track holds two identical copies; -50% = exactly one copy = seamless loop.
+   Linear timing: a marquee holds constant speed, it never eases. */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 48s linear infinite;
+  will-change: transform;
+}
+/* Mobile: quieter — slower drift */
+@media (max-width: 767px) {
+  .marquee-track { animation-duration: 60s; }
+}
+/* Edge dissolve — logos fade in/out at both ends, no hard cut */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+}
+
+/* ── Reduced motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-line        { animation: none; opacity: 0.4; }
+  .hero-image-animate { animation: none; }
+  .marquee-track      { animation: none; transform: translateX(0); }
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Utility ─────────────────────────────────────────────── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Text size floor on mobile */
+@media (max-width: 767px) {
+  .label-text { font-size: 0.75rem; }  /* 12px min */
+  .caption-text { font-size: 0.8125rem; } /* 13px min */
 }
