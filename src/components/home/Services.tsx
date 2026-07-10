@@ -13,7 +13,7 @@ const services = [
 export function Services() {
   return (
     <section
-      className="pt-32 md:pt-56 pb-24 md:pb-40 mb-24 md:mb-32 px-6 md:px-10 border-t border-[#1A1A1A]"
+      className="pt-20 md:pt-28 pb-20 md:pb-28 px-6 md:px-10 border-t border-[#1A1A1A]"
       style={{ maxWidth: '1280px', margin: '0 auto' }}
     >
       <ScrollReveal trace>

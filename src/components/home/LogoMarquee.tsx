@@ -47,7 +47,7 @@ export function LogoMarquee() {
 
   return (
     <section
-      className="pt-20 md:pt-28 pb-28 md:pb-40"
+      className="pt-16 md:pt-20 pb-16 md:pb-24"
       aria-label="Selected clients: Mercedes-Benz, Bvlgari, Škoda, Lexus, Toyota"
     >
       {/* Quiet label — fades in on scroll, label variant (Y=8px) */}

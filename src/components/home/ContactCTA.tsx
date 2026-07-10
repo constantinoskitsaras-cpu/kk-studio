@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/Button'
 
 export function ContactCTA() {
   return (
-    <section className="mt-24 md:mt-32 pt-32 md:pt-52 pb-24 md:pb-40 px-6 md:px-10 text-center">
+    <section className="pt-20 md:pt-28 pb-24 md:pb-32 px-6 md:px-10 text-center">
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         {/* Display type — headline variant with centered lime trace above it */}
         <ScrollReveal variant="headline" trace traceCenter>
