@@ -11,9 +11,9 @@ export function CaseHeroVideo({ vimeoId, title, start = 0 }: { vimeoId: string; 
 
   return (
     <iframe
-      src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p${start ? `#t=${start}s` : ''}`}
+      src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&autopause=0&playsinline=1&quality=4K${start ? `#t=${start}s` : ''}`}
       onLoad={() => setLoaded(true)}
-      className="absolute top-1/2 left-1/2"
+      className="hidden md:block absolute top-1/2 left-1/2"
       style={{
         width: '100vw',
         height: '56.25vw', // 16:9 of full-bleed width → covers the 2.39 band

@@ -6,6 +6,7 @@ const channels = [
   { key: 'instagram', label: 'Instagram' },
   { key: 'youtube', label: 'YouTube' },
   { key: 'artstation', label: 'ArtStation' },
+  { key: 'vimeo', label: 'Vimeo' },
   { key: 'linkedin', label: 'LinkedIn' },
 ] as const
 

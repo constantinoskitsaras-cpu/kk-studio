@@ -61,10 +61,16 @@
 }
 
 /* ── Base reset ──────────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Wrapped in @layer base so it participates in Tailwind v4's cascade layers —
+   unlayered CSS always beats layered CSS regardless of specificity, which was
+   silently zeroing out every margin/padding utility class (mr-8, px-6, etc.)
+   site-wide. */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 html {

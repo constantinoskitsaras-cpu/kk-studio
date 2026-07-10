@@ -21,7 +21,7 @@ export function ContactCTA() {
             className="font-body font-light mt-6 md:mt-8 text-[1rem] md:text-[1.125rem]"
             style={{ color: '#7A7A7A' }}
           >
-            Bespoke commissions and select collaborations.
+            Open to studio roles, commissions, and collaborations.
           </p>
         </ScrollReveal>
 

@@ -1,14 +1,22 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { LinkedInIcon, ArtStationIcon, VimeoIcon, YouTubeIcon } from '@/components/ui/SocialIcons'
+import { site } from '@/lib/site'
 
 const navLinks = [
   { href: '/work',    label: 'Work'    },
   { href: '/about',   label: 'About'   },
   { href: '/contact', label: 'Contact' },
+]
+
+const navSocials = [
+  { label: 'YouTube',    href: site.social.youtube,    Icon: YouTubeIcon },
+  { label: 'Vimeo',      href: site.social.vimeo,      Icon: VimeoIcon },
+  { label: 'ArtStation', href: site.social.artstation, Icon: ArtStationIcon },
+  { label: 'LinkedIn',   href: site.social.linkedin,   Icon: LinkedInIcon },
 ]
 
 export function Navigation() {
@@ -37,7 +45,9 @@ export function Navigation() {
         }`}
         style={{ height: '72px' }}
       >
-        {/* Centered nav — absolutely centered to the full-width bar (true viewport center) */}
+        {/* Centered nav — absolutely centered to the full-width bar (true viewport
+            center), independent of the left/right content below so it never drifts
+            as the logo/social widths change or the viewport gets very wide. */}
         <div className="hidden md:flex items-center gap-12 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
           {navLinks.map(({ href, label }) => {
             const active = pathname === href || pathname.startsWith(href + '/')
@@ -64,55 +74,80 @@ export function Navigation() {
           className="relative h-full mx-auto flex items-center justify-between px-6 md:px-10"
           style={{ maxWidth: '1280px' }}
         >
-          {/* Monogram */}
+          {/* Left — monogram. Rendered as a CSS mask (not <Image>) so the fill
+              color can transition to lime on hover instead of just dimming. */}
           <Link
             href="/"
             aria-label="Konstantinos Kitsaras — Home"
             className="group flex items-center ml-1 md:ml-4"
           >
-            <Image
-              src="/images/logo.svg"
-              alt="KK Studio"
-              width={200}
-              height={200}
-              priority
-              unoptimized
-              className="h-12 md:h-14 w-auto transition-opacity duration-200 group-hover:opacity-70"
+            <span
+              aria-hidden="true"
+              className="block h-12 w-12 md:h-14 md:w-14 bg-[#EDEAE4] transition-colors duration-200 group-hover:bg-[#AAEE00]"
+              style={{
+                WebkitMaskImage: 'url(/images/logo.svg)',
+                maskImage: 'url(/images/logo.svg)',
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat',
+                WebkitMaskSize: 'contain',
+                maskSize: 'contain',
+                WebkitMaskPosition: 'center',
+                maskPosition: 'center',
+              }}
             />
           </Link>
 
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden flex flex-col justify-center items-end gap-[5px] w-10 h-10 -mr-2 ml-auto"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-          >
-            <span
-              className="block h-px transition-all duration-300"
-              style={{
-                width: '20px',
-                backgroundColor: '#EDEAE4',
-                transform: menuOpen ? 'translateY(5px) rotate(45deg)' : 'none',
-              }}
-            />
-            <span
-              className="block h-px transition-all duration-300"
-              style={{
-                width: '14px',
-                backgroundColor: '#EDEAE4',
-                opacity: menuOpen ? 0 : 1,
-              }}
-            />
-            <span
-              className="block h-px transition-all duration-300"
-              style={{
-                width: '20px',
-                backgroundColor: '#EDEAE4',
-                transform: menuOpen ? 'translateY(-5px) rotate(-45deg)' : 'none',
-              }}
-            />
-          </button>
+          {/* Right — social (desktop) + mobile menu button */}
+          <div className="flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-5">
+              {navSocials.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  title={label}
+                  className="text-[#7A7A7A] transition-all duration-200 ease-out hover:text-[#AAEE00] hover:-translate-y-0.5 hover:drop-shadow-[0_0_6px_rgba(170,238,0,0.45)]"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
+
+            {/* Mobile menu button */}
+            <button
+              className="md:hidden flex flex-col justify-center items-end gap-[5px] w-10 h-10 mr-1"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+            >
+              <span
+                className="block h-px transition-all duration-300"
+                style={{
+                  width: '20px',
+                  backgroundColor: '#EDEAE4',
+                  transform: menuOpen ? 'translateY(5px) rotate(45deg)' : 'none',
+                }}
+              />
+              <span
+                className="block h-px transition-all duration-300"
+                style={{
+                  width: '14px',
+                  backgroundColor: '#EDEAE4',
+                  opacity: menuOpen ? 0 : 1,
+                }}
+              />
+              <span
+                className="block h-px transition-all duration-300"
+                style={{
+                  width: '20px',
+                  backgroundColor: '#EDEAE4',
+                  transform: menuOpen ? 'translateY(-5px) rotate(-45deg)' : 'none',
+                }}
+              />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -126,7 +161,7 @@ export function Navigation() {
           transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
         }}
       >
-        <div className="flex flex-col justify-center h-full px-8 gap-8">
+        <div className="flex flex-col justify-center items-center text-center h-full px-8 gap-8">
           {navLinks.map(({ href, label }, i) => {
             const active = pathname === href || pathname.startsWith(href + '/')
             return (

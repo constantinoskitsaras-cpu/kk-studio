@@ -2,15 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { site } from '@/lib/site'
-
-// ── SWAP ZONE: change the hero video id in src/lib/site.ts ──────
-const VIMEO_ID = site.vimeoId
-// ───────────────────────────────────────────────────────────────
 
 export function Hero() {
   const [mounted, setMounted] = useState(false)
-  const [videoReady, setVideoReady] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const playingRef = useRef(false)
+  const [videoSrc, setVideoSrc] = useState<string | null>(null)
 
   // Scroll-driven lime line under the heading: 0% with the hero at the top,
   // filling to 100% (left→right) as the hero scrolls out of view.
@@ -26,6 +23,35 @@ export function Hero() {
     const t = setTimeout(() => setMounted(true), 100)
     return () => clearTimeout(t)
   }, [])
+
+  // Pick a light 720p reel on phones, the full master on desktop. Resolved on
+  // mount (single render) so the heavy file never downloads on mobile.
+  useEffect(() => {
+    const mobile = window.matchMedia('(max-width: 767px)').matches
+    setVideoSrc(mobile ? '/videos/reel-mobile.mp4' : '/videos/reel.mp4')
+  }, [])
+
+  // Seamless loop — cross-dip the reel's opacity at BOTH ends: fade OUT over the
+  // last ~1.5s (close) and fade IN over the first ~1.5s (restart), so the loop
+  // seam never cuts abruptly. The very first fade-in is hidden by the intro curtain.
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    const FADE = 1.5
+    let raf = 0
+    const tick = () => {
+      if (!playingRef.current) {
+        // Not playing yet (buffering) — keep hidden so no frozen frame shows.
+        v.style.opacity = '0'
+      } else if (v.duration) {
+        const edge = Math.min(v.currentTime, v.duration - v.currentTime)
+        v.style.opacity = String(Math.max(0, Math.min(1, edge / FADE)))
+      }
+      raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [videoSrc])
 
   // Name block: includes scale(0.982→1) — the same "opening" feel as project frames
   const fadeIn = (delayMs: number, withScale = false) => ({
@@ -45,7 +71,7 @@ export function Hero() {
     >
       {/* ── Background layers ─────────────────────────────────────────
           z-0   gradient — permanent on mobile, loading-state on desktop
-          z-[1] Vimeo iframe — desktop only, overlays gradient once loaded
+          z-[1] reel video — desktop only, autoplays muted/looping
           z-[2] overlay stack — always above video
       ────────────────────────────────────────────────────────────── */}
 
@@ -57,35 +83,30 @@ export function Hero() {
         }}
       />
 
-      {/* Vimeo cinematic background — desktop only
-          background=1 is Vimeo's native parameter for background video mode:
-          strips all player chrome, forces muted autoplay loop, no interaction.
-          Video is 2.4:1 (ultrawide). CSS cover keeps it centred on any viewport:
-          – 16:9 desktop → height governs, width overflows ~34% on each side
-          – ultrawide monitor → width governs, height clipped at centre
-          Mobile: hidden — gradient fallback shows instead (saves bandwidth) */}
-      <div
-        className="hidden md:block absolute inset-0 z-[1] overflow-hidden"
-        aria-hidden="true"
-      >
-        <iframe
-          src={`https://player.vimeo.com/video/${VIMEO_ID}?background=1&autoplay=1&loop=1&muted=1&autopause=0#t=8s`}
-          onLoad={() => setVideoReady(true)}
-          className="absolute"
-          style={{
-            top: '50%',
-            left: '50%',
-            width: 'max(100%, calc(100dvh * 2.4))',
-            height: 'max(100%, calc(100vw / 2.4))',
-            transform: 'translate(-50%, -50%)',
-            border: 'none',
-            pointerEvents: 'none',
-            opacity: videoReady ? 1 : 0,
-            transition: 'opacity 1000ms cubic-bezier(0.16,1,0.3,1)',
-          }}
-          allow="autoplay; fullscreen"
-          title=""
-        />
+      {/* Showreel — self-hosted, autoplays muted + loops (mobile + desktop). Stays
+          hidden (dark gradient shows) until it's actually PLAYING, so there's no
+          frozen first frame; then fades OUT only at the loop end. */}
+      <div className="absolute inset-0 z-[1] overflow-hidden" aria-hidden="true">
+        {videoSrc && (
+          <video
+            ref={videoRef}
+            src={videoSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            onPlaying={() => {
+              playingRef.current = true
+              // Tell the intro loader the hero is actually playing, so the curtain
+              // only lifts once the video runs (no empty gap).
+              ;(window as unknown as { __kkHeroPlaying?: boolean }).__kkHeroPlaying = true
+              window.dispatchEvent(new Event('kk:heroplaying'))
+            }}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ opacity: 0 }}
+          />
+        )}
       </div>
 
       {/* Overall dim — pulls video brightness down, never killing it */}
@@ -155,7 +176,7 @@ export function Hero() {
                   fontSize: 'clamp(0.625rem, 0.9vw, 0.75rem)',
                 }}
               >
-                Cinematic stills, film, and real-time visualization for automotive brands, agencies, and productions.
+                VFX generalist &amp; 3D artist — real-time rendering, look development, and cinematic 3D for studios and brands.
               </p>
             </div>
           </div>

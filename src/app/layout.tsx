@@ -28,22 +28,24 @@ const inter = Inter({
   display: 'swap',
 })
 
+const description =
+  'VFX Generalist & 3D Artist — Real-time rendering, look development, and cinematic visualization.'
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: `${site.name} — Automotive CGI Studio`,
-  description:
-    'Precision-crafted automotive CGI, Unreal Engine visualization, and cinematic stills. Bespoke commissions for automotive brands, agencies, and productions.',
+  title: 'Konstantinos Kitsaras',
+  description,
   openGraph: {
-    title: `${site.name} — Automotive CGI Studio`,
-    description: 'Precision-crafted automotive CGI and Unreal Engine visualization.',
+    title: 'Konstantinos Kitsaras',
+    description,
     url: site.url,
     siteName: site.name,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${site.name} — Automotive CGI Studio`,
-    description: 'Precision-crafted automotive CGI and Unreal Engine visualization.',
+    title: 'Konstantinos Kitsaras',
+    description,
   },
 }
 

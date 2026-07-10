@@ -40,7 +40,7 @@ function ProjectVisual({
           sizes={sizes}
           priority={priority}
           quality={100}
-          className="object-cover"
+          className="object-contain scale-90 md:object-cover md:scale-100"
         />
       ) : (
         <>
@@ -254,6 +254,22 @@ export default async function CaseStudyPage({ params }: Props) {
               {project.process}
             </p>
           </ScrollReveal>
+
+          {/* Technical breakdown images — only when present */}
+          {project.breakdowns && project.breakdowns.length > 0 && (
+            <div className="mt-12 md:mt-16 flex flex-col gap-2 md:gap-3">
+              {project.breakdowns.map((src, i) => (
+                <ScrollReveal key={src} variant="project" delay={i * 40}>
+                  <ProjectVisual
+                    src={src}
+                    alt={`${project.title} — breakdown ${i + 1}`}
+                    className="w-full aspect-[4/3] md:aspect-[16/9]"
+                    sizes="100vw"
+                  />
+                </ScrollReveal>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* Next project strip */}

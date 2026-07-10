@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
@@ -110,19 +109,25 @@ export default function ContactPage() {
           className="px-6 md:px-10 pb-24 md:pb-40 border-t border-[#1A1A1A]"
           style={{ maxWidth: '1280px', margin: '0 auto' }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 pt-16 md:pt-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 pt-16 md:pt-24 md:items-center">
 
             {/* Left — Direct info */}
             <div>
-              {/* Oversized faint monogram — quiet brand watermark */}
-              <Image
-                src="/images/logo.svg"
-                alt=""
+              {/* Oversized faint monogram — quiet brand watermark. CSS mask (not
+                  <Image>) so it can be tinted lime instead of warm-white. */}
+              <span
                 aria-hidden="true"
-                width={320}
-                height={320}
-                unoptimized
-                className="h-40 md:h-56 w-auto mb-10 opacity-[0.07] select-none pointer-events-none"
+                className="block h-28 md:h-36 w-28 md:w-36 mb-8 bg-[#AAEE00] opacity-[0.14] select-none pointer-events-none"
+                style={{
+                  WebkitMaskImage: 'url(/images/logo.svg)',
+                  maskImage: 'url(/images/logo.svg)',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskSize: 'contain',
+                  maskSize: 'contain',
+                  WebkitMaskPosition: 'left center',
+                  maskPosition: 'left center',
+                }}
               />
               <ScrollReveal>
                 <p

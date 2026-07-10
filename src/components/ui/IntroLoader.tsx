@@ -4,12 +4,13 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 
-// Full-screen intro that plays once per session:
-//  1. black overlay
-//  2. a 1px lime line sweeps top → bottom (0.8s), revealing the centered logo
-//     via a clip-path that opens in sync
-//  3. logo holds ~0.5s
-//  4. the whole overlay fades out (0.6s), revealing the site
+const EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1]
+
+// Full-screen intro that plays once per session — a cinematic letterbox reveal:
+//  1. two black bars (top + bottom) open from the middle (0.8s), revealing the
+//     centered logo
+//  2. logo holds (~0.6s)
+//  3. the whole overlay fades out (0.5s), revealing the site
 export function IntroLoader() {
   const reduce = useReducedMotion()
   const [phase, setPhase] = useState<'pending' | 'playing' | 'done'>('pending')
@@ -30,9 +31,9 @@ export function IntroLoader() {
 
   if (phase === 'done') return null
 
-  // Timeline: 0.8s sweep/reveal + 0.5s hold + 0.6s fade = 1.9s (reduced: 0.5s hold + 0.5s fade).
+  // bars 0.8s + logo pause 0.6s + fade 0.5s = 1.9s
   const total = reduce ? 1.0 : 1.9
-  const fadeStart = reduce ? 0.5 : 0.684 // 1.3s / 1.9s
+  const fadeStart = reduce ? 0.5 : 1.4 / 1.9
 
   return (
     <motion.div
@@ -45,11 +46,11 @@ export function IntroLoader() {
       }}
       aria-hidden="true"
     >
-      {/* Logo — revealed top → bottom by the sweeping line via clip-path */}
+      {/* Logo — sits at center, revealed as the bars part */}
       <motion.div
-        initial={{ clipPath: reduce ? 'inset(0 0 0% 0)' : 'inset(0 0 100% 0)' }}
-        animate={{ clipPath: 'inset(0 0 0% 0)' }}
-        transition={{ duration: reduce ? 0 : 0.8, ease: 'easeInOut' }}
+        initial={{ opacity: reduce ? 1 : 0, scale: reduce ? 1 : 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: reduce ? 0.2 : 0.7, ease: EXPO, delay: reduce ? 0 : 0.3 }}
       >
         <Image
           src="/images/logo.webp"
@@ -62,17 +63,19 @@ export function IntroLoader() {
         />
       </motion.div>
 
-      {/* Lime scan line — sweeps top → bottom */}
-      {!reduce && (
-        <motion.span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-px"
-          style={{ backgroundColor: '#AAEE00' }}
-          initial={{ y: 0, opacity: 1 }}
-          animate={{ y: '100vh', opacity: [1, 1, 0] }}
-          transition={{ duration: 0.8, ease: 'easeInOut', times: [0, 0.85, 1] }}
-        />
-      )}
+      {/* Letterbox bars — meet at the center, then open top/bottom */}
+      <motion.div
+        className="absolute inset-x-0 top-0 h-1/2 bg-black z-10"
+        initial={{ y: reduce ? '-100%' : 0 }}
+        animate={{ y: '-100%' }}
+        transition={{ duration: reduce ? 0 : 0.8, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute inset-x-0 bottom-0 h-1/2 bg-black z-10"
+        initial={{ y: reduce ? '100%' : 0 }}
+        animate={{ y: '100%' }}
+        transition={{ duration: reduce ? 0 : 0.8, ease: 'easeInOut' }}
+      />
     </motion.div>
   )
 }

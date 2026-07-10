@@ -64,10 +64,26 @@ export function LinkedInIcon({ className, size = 18 }: IconProps) {
   )
 }
 
+export function VimeoIcon({ className, size = 18 }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M23.977 6.416c-.105 2.338-1.739 5.543-4.894 9.609-3.268 4.247-6.026 6.37-8.29 6.37-1.409 0-2.578-1.294-3.553-3.881L5.322 11.4c-.719-2.584-1.488-3.878-2.312-3.878-.179 0-.806.378-1.881 1.132L0 7.197a315.065 315.065 0 003.501-3.128c1.579-1.368 2.765-2.085 3.554-2.159 1.866-.179 3.016 1.1 3.447 3.838.465 2.953.789 4.789.971 5.507.539 2.45 1.131 3.674 1.776 3.674.502 0 1.256-.794 2.265-2.385 1.004-1.589 1.54-2.797 1.612-3.628.144-1.371-.395-2.06-1.614-2.06-.574 0-1.167.131-1.776.395 1.181-3.866 3.434-5.745 6.762-5.636 2.467.073 3.63 1.673 3.49 4.799z" />
+    </svg>
+  )
+}
+
 // Single source mapping link keys → icon component, so Footer/Contact stay in sync.
 export const socialIcons = {
   instagram: InstagramIcon,
   youtube: YouTubeIcon,
   artstation: ArtStationIcon,
+  vimeo: VimeoIcon,
   linkedin: LinkedInIcon,
 } as const

@@ -16,6 +16,9 @@ export interface Project {
   contribution?: string
   /** Short pull-quote (lifted from approach) shown between gallery and process. */
   pullQuote?: string
+  /** Optional technical breakdown images (wireframe, clay, lighting, AOV, …).
+   *  Rendered in the Process section; the block hides when empty. */
+  breakdowns?: string[]
   /** Vimeo video id for the detail-page hero background embed. */
   vimeoId: string
   /** Seconds into the clip to start playback, so the action is already going. Default 0. */

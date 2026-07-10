@@ -35,15 +35,16 @@ const practice = [
   },
 ]
 
-// Toolset — shown as a quiet credential row under the bio.
-const skills = [
+// Software — the working toolset, shown as a quiet credential strip.
+const software = [
   'Unreal Engine 5',
-  'Lumen',
-  'DaVinci Resolve',
   '3ds Max',
-  'Maya',
   'V-Ray',
-  'Developer',
+  'Houdini',
+  'Maya',
+  'Substance Painter',
+  'DaVinci Resolve',
+  'TyFlow',
 ]
 
 export default function AboutPage() {
@@ -159,6 +160,10 @@ export default function AboutPage() {
               <ScrollReveal delay={80}>
                 <div className="flex flex-col gap-5 mt-8 max-w-prose">
                   <p className="font-body text-[1rem] leading-[1.55]" style={{ color: '#7A7A7A' }}>
+                    I&rsquo;m a graduate of Middlesex University London, with a
+                    BA (Hons) in Computer Graphics Technology.
+                  </p>
+                  <p className="font-body text-[1rem] leading-[1.55]" style={{ color: '#7A7A7A' }}>
                     Before moving into 3D, I started out in development and web
                     design &mdash; a foundation in code and interface that still
                     shapes how I approach every project, and why I build the web
@@ -185,30 +190,39 @@ export default function AboutPage() {
                 </div>
               </ScrollReveal>
 
-              {/* Toolset */}
-              <ScrollReveal variant="label" delay={120}>
-                <div className="mt-10 md:mt-12 pt-8">
-                  <p
-                    className="font-ui font-medium uppercase tracking-[0.12em] text-[0.6875rem] mb-5 label-text"
-                    style={{ color: '#AAEE00' }}
-                  >
-                    Toolset
-                  </p>
-                  <div className="flex flex-wrap gap-x-5 gap-y-3">
-                    {skills.map((s) => (
-                      <span
-                        key={s}
-                        className="font-ui font-medium uppercase tracking-[0.08em] text-[0.8125rem]"
-                        style={{ color: '#7A7A7A' }}
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </ScrollReveal>
             </div>
           </div>
+        </div>
+
+        {/* Software — toolset credential strip */}
+        <div
+          className="px-6 md:px-10 pb-24 md:pb-32"
+          style={{ maxWidth: '1280px', margin: '0 auto' }}
+        >
+          <ScrollReveal trace>
+            <p
+              className="font-ui font-medium uppercase tracking-[0.12em] text-[0.6875rem] pt-16 md:pt-24 mb-2 label-text"
+              style={{ color: '#AAEE00' }}
+            >
+              Software
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal variant="label" delay={80}>
+            <div className="mt-8 md:mt-10">
+              <div className="flex flex-wrap gap-x-5 gap-y-3">
+                {software.map((s) => (
+                  <span
+                    key={s}
+                    className="font-ui font-medium uppercase tracking-[0.08em] text-[0.8125rem]"
+                    style={{ color: '#7A7A7A' }}
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
 
         {/* Practice — hairline-led list, mirrors the Studio Brief pillars */}

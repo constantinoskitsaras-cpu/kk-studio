@@ -142,12 +142,14 @@ A near-monochrome black-and-warm-white system with exactly one saturated voice �
 
 ## 4. Elevation
 
-This system is **flat by tone, not by shadow.** There are no drop shadows on surfaces, no glassmorphism, no lifted cards. Depth comes from three things: tonal stacking of near-blacks (`#090909` → `#111111` → `#181818`), 1px hairlines (`#1A1A1A`/`#262626`) that separate bands, and cinematic gradient vignettes in the hero (top/bottom scrims over the video). The only "glow" in the system is the deliberate lime drop-shadow on icon/name hover — a light cue, not an elevation.
+**Structural surfaces are flat by tone, not by shadow.** Content bands and frames use no drop shadows and no lifted cards. Depth there comes from tonal stacking of near-blacks (`#090909` → `#111111` → `#181818`), 1px hairlines (`#1A1A1A`/`#262626`), and cinematic gradient vignettes in the hero. The one deliberate exception is **interactive chrome** — the primary button and the footer social pills use a frosted-glass treatment (translucent fill + `backdrop-filter: blur` + a hairline-light border) so controls read as tappable and slightly lifted. Glass is scoped to controls; it never appears on content surfaces or section bands.
 
 ### Named Rules
-**The No-Box Rule.** Surfaces are separated by hairlines, tonal shift, or space — never by a shadowed card. If a block needs to feel distinct, change its background one tonal step or rule it off; do not float it.
+**The No-Box Rule.** Content surfaces are separated by hairlines, tonal shift, or space — never by a shadowed or floating card. If a block needs to feel distinct, change its background one tonal step or rule it off.
 
-**The Glow-Is-A-Cue Rule.** The only shadow permitted is the lime hover glow (`drop-shadow(0 0 6px rgba(170,238,0,0.45))`) on interactive icons and labels. It signals interactivity; it is never ambient or decorative.
+**The Frosted-Chrome Rule.** Glassmorphism (translucent fill + `backdrop-filter: blur` + a light hairline border) is reserved for **interactive chrome only** — primary buttons and the footer social pills. It signals "this is a control." Never apply it to cards, section bands, or content surfaces; those stay flat + hairline.
+
+**The Glow-Is-A-Cue Rule.** Ambient shadow is the lime hover glow (`drop-shadow(0 0 6px rgba(170,238,0,0.45))`) on interactive icons and labels. It signals interactivity; it is never decorative.
 
 ## 5. Components
 
@@ -187,6 +189,6 @@ This system is **flat by tone, not by shadow.** There are no drop shadows on sur
 - **Don't** present work as an ArtStation-style thumbnail grid — curate into large, deliberate frames with identity.
 - **Don't** ship SaaS/template scaffolding: no card grids, no hero-metric template, no tiny uppercase tracked eyebrow above every section, no numbered `01/02/03` section markers by reflex.
 - **Don't** let anything read amateur or cheap — premium finish in every detail or it doesn't ship.
-- **Don't** add drop shadows, glassmorphism, or floating cards. (The No-Box Rule.) The only shadow is the lime hover cue.
+- **Don't** put glass/blur or drop shadows on content surfaces, cards, or section bands — those stay flat + hairline (The No-Box Rule). Glass is reserved for interactive chrome (buttons, social pills) per The Frosted-Chrome Rule.
 - **Don't** round corners, gradient-fill text, or use side-stripe (`border-left`/`-right` > 1px) accents.
 - **Don't** set body copy in Space Grotesk or in all-caps; labels only, short strings.

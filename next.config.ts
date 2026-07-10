@@ -1,11 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Static export for Cloudflare Pages — this site has no API routes or
+  // server-only rendering, so a fully static build is the simplest, most
+  // reliable deploy target (no Workers/adapter to maintain).
+  output: "export",
   images: {
-    // AVIF first (best quality-per-byte), WebP fallback.
-    formats: ["image/avif", "image/webp"],
-    // Next 16 requires whitelisting any non-default quality. 100 = max-resolution web images.
-    qualities: [75, 90, 100],
+    // No Next.js image server on static hosts — serve originals as-is.
+    // Source files are already pre-optimized (converted/resized by hand).
+    unoptimized: true,
   },
 };
 

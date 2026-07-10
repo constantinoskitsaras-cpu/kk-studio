@@ -61,7 +61,7 @@ function FrameVideo({ vimeoId, title, active = true, start = 0 }: { vimeoId: str
 
   return (
     <iframe
-      src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=1080p${start ? `#t=${start}s` : ''}`}
+      src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&autopause=0&playsinline=1&quality=4K${start ? `#t=${start}s` : ''}`}
       onLoad={() => setLoaded(true)}
       className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none w-[133.34vw] h-[75vw] md:w-screen md:h-[56.25vw]"
       style={{
@@ -151,7 +151,7 @@ function FrameMeta({
       style={padded ? { maxWidth: '1280px', margin: '0 auto' } : {}}
     >
       <div
-        className="flex items-baseline justify-between gap-8 pt-10 md:pt-12"
+        className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between md:gap-8 pt-10 md:pt-12"
         style={{ borderTop: '1px solid #1A1A1A', ...animStyle }}
       >
         {/* Title — shifts to lime on hover via group */}
@@ -162,9 +162,9 @@ function FrameMeta({
           {project.title}
         </h3>
 
-        {/* Category — right */}
+        {/* Category — wraps to its own line on mobile; nowrap on the right at md+ */}
         <p
-          className="font-ui font-medium uppercase tracking-[0.1em] whitespace-nowrap flex-shrink-0 label-text"
+          className="font-ui font-medium uppercase tracking-[0.1em] md:whitespace-nowrap md:flex-shrink-0 label-text"
           style={{ fontSize: '0.6875rem', color: '#7A7A7A' }}
         >
           {project.category}
@@ -193,7 +193,6 @@ export function ProjectFrameFull({
 
   // ── Follow-cursor "View" pill — desktop/hover-only signature ──
   const [hovered, setHovered] = useState(false)
-  const [everHovered, setEverHovered] = useState(false)
   const [canHover, setCanHover] = useState(false)
   const cx = useMotionValue(0)
   const cy = useMotionValue(0)
@@ -208,10 +207,11 @@ export function ProjectFrameFull({
   // Desktop widths only (not gated on hover-media, which is unreliable on some
   // setups), motion allowed. Two modes:
   //  • video (work index): autoplay — top frame eager, rest lazy on scroll.
-  //  • videoHover (homepage): mount on first hover, visible only while hovered.
+  //  • videoHover (homepage): PRELOAD the player once the frame is in view (so it's
+  //    already buffered/playing behind the poster), reveal it instantly on hover.
   const eligibleVideo = !isMobile && !reduce && Boolean(project.vimeoId)
   const showVideo =
-    eligibleVideo && ((video && (priority || revealed)) || (videoHover && everHovered))
+    eligibleVideo && ((video && (priority || revealed)) || (videoHover && revealed))
   const videoActive = video ? true : hovered
 
   const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -227,7 +227,7 @@ export function ProjectFrameFull({
         href={`/work/${project.slug}`}
         className="block group relative"
         aria-label={`View project: ${project.title}`}
-        onMouseEnter={() => { setHovered(true); setEverHovered(true) }}
+        onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onMouseMove={handleMove}
         style={showCursor ? { cursor: 'none' } : undefined}
@@ -247,7 +247,7 @@ export function ProjectFrameFull({
         {showCursor && (
           <motion.div
             aria-hidden="true"
-            className="pointer-events-none absolute top-0 left-0 z-10"
+            className="hidden md:block pointer-events-none absolute top-0 left-0 z-10"
             style={{ x: sx, y: sy }}
           >
             <motion.span

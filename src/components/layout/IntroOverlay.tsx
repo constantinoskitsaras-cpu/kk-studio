@@ -31,8 +31,14 @@ export function IntroOverlay() {
     // loaded — so the site is ready behind it. A ceiling guarantees we never trap.
     let minDone = false
     let pageLoaded = document.readyState === 'complete'
+    // On the homepage, also hold until the hero reel is actually playing, so the
+    // curtain never lifts onto an empty/buffering video. Other pages have no hero
+    // video, so heroReady is true immediately there.
+    const isHome = window.location.pathname === '/'
+    let heroReady =
+      !isHome || (window as unknown as { __kkHeroPlaying?: boolean }).__kkHeroPlaying === true
     const finishIfReady = () => {
-      if (minDone && pageLoaded) setShow(false)
+      if (minDone && pageLoaded && heroReady) setShow(false)
     }
 
     // Floor: ~2.2s to draw + ink the logo, then a long hold (with the lime glow
@@ -42,12 +48,15 @@ export function IntroOverlay() {
     const minT = setTimeout(() => { minDone = true; finishIfReady() }, minMs)
     const maxT = setTimeout(() => setShow(false), maxMs)
     const onLoad = () => { pageLoaded = true; finishIfReady() }
+    const onHero = () => { heroReady = true; finishIfReady() }
     if (!pageLoaded) window.addEventListener('load', onLoad)
+    if (!heroReady) window.addEventListener('kk:heroplaying', onHero)
 
     return () => {
       clearTimeout(minT)
       clearTimeout(maxT)
       window.removeEventListener('load', onLoad)
+      window.removeEventListener('kk:heroplaying', onHero)
     }
   }, [reduce])
 

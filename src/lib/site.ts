@@ -15,7 +15,10 @@ export const site = {
     linkedin: 'https://www.linkedin.com/in/constantinos-kitsaras-762a0513a/',
     youtube: 'https://www.youtube.com/@konstantinos.kitsaras',
     artstation: 'https://www.artstation.com/constantinos_kitsaras',
+    vimeo: 'https://vimeo.com/user236618126',
   },
   // Vimeo video id for the home hero background embed.
   vimeoId: '1203181805',
+  // Showreel — opened from the hero "Watch Reel" button (unlisted Vimeo is fine).
+  reelVimeoId: '1205572536',
 } as const

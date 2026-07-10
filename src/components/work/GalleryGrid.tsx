@@ -35,12 +35,12 @@ export function GalleryGrid({ images, title }: GalleryGridProps) {
                 fill
                 sizes="100vw"
                 quality={100}
-                className="object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.02]"
+                className="object-contain scale-90 md:object-cover md:scale-100 transition-transform duration-[600ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.02]"
               />
               {/* Zoom affordance — quiet, appears on hover */}
               <span
                 aria-hidden="true"
-                className="absolute bottom-4 right-4 flex items-center gap-2 px-3 py-1.5 font-ui font-medium uppercase tracking-[0.1em] text-[0.625rem] opacity-0 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0"
+                className="absolute bottom-4 right-4 hidden md:group-hover:flex items-center gap-2 px-3 py-1.5 font-ui font-medium uppercase tracking-[0.1em] text-[0.625rem]"
                 style={{ color: '#AAEE00', backgroundColor: 'rgba(9,9,9,0.55)', border: '1px solid rgba(170,238,0,0.25)' }}
               >
                 <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
