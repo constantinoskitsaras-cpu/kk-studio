@@ -31,7 +31,7 @@ function ProjectVisual({
   gradient?: string
 }) {
   return (
-    <div className={`relative overflow-hidden ${className}`} style={style}>
+    <div className={`overflow-hidden ${className}`} style={style}>
       {src ? (
         <Image
           src={src}
@@ -263,7 +263,7 @@ export default async function CaseStudyPage({ params }: Props) {
                   <ProjectVisual
                     src={src}
                     alt={`${project.title} — breakdown ${i + 1}`}
-                    className="w-full aspect-[4/3] md:aspect-[16/9]"
+                    className="relative w-full aspect-[4/3] md:aspect-[16/9]"
                     sizes="100vw"
                   />
                 </ScrollReveal>

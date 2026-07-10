@@ -92,7 +92,7 @@ export default function ContactPage() {
             </p>
             <h1
               className="font-display font-extrabold text-[#EDEAE4] leading-[0.94] tracking-[-0.02em]"
-              style={{ fontSize: 'clamp(2.25rem, 4.5vw, 4rem)' }}
+              style={{ fontSize: 'clamp(2.25rem, 5.5vw, 5rem)' }}
             >
               Start a
               <br />
