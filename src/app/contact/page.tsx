@@ -20,13 +20,20 @@ const projectTypes = [
   'Other',
 ]
 
+const timelines = [
+  'ASAP',
+  '1–2 weeks',
+  '1 month',
+  '2–3 months',
+  'Flexible',
+]
+
 export default function ContactPage() {
   const [formState, setFormState] = useState<FormState>('idle')
   const [form, setForm] = useState({
     name: '',
-    email: '',
-    company: '',
     projectType: '',
+    timeline: '',
     message: '',
   })
 
@@ -37,13 +44,14 @@ export default function ContactPage() {
     e.preventDefault()
     setFormState('submitting')
     // No backend yet — hand off to the user's mail client with the inquiry
-    // pre-filled so nothing is lost. Swap for a real endpoint when available.
-    const subject = `New inquiry — ${form.name}${form.company ? ` · ${form.company}` : ''}`
+    // pre-filled so nothing is lost. The visitor's own email client fills in
+    // the From address, so we don't need to collect it separately. Swap for
+    // a real endpoint when available.
+    const subject = `New inquiry — ${form.name}`
     const body = [
       `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Company: ${form.company || '—'}`,
       `Project type: ${form.projectType || '—'}`,
+      `Timeline: ${form.timeline || '—'}`,
       '',
       form.message,
     ].join('\n')
@@ -109,15 +117,32 @@ export default function ContactPage() {
           className="px-6 md:px-10 pb-24 md:pb-40 border-t border-[#1A1A1A]"
           style={{ maxWidth: '1280px', margin: '0 auto' }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 pt-16 md:pt-24 md:items-center">
+          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 pt-16 md:pt-24 md:items-center">
+            {/* Vertical divider between the two columns — desktop only */}
+            <div
+              aria-hidden="true"
+              className="hidden md:block absolute top-0 bottom-0 left-1/2 w-px -translate-x-1/2"
+              style={{ background: 'linear-gradient(to bottom, transparent, #AAEE00, transparent)', opacity: 0.4 }}
+            />
 
             {/* Left — Direct info */}
-            <div>
-              {/* Oversized faint monogram — quiet brand watermark. CSS mask (not
-                  <Image>) so it can be tinted lime instead of warm-white. */}
+            <div className="relative">
+              {/* Technical ruler texture — quiet vertical hairlines beside the
+                  monogram, the same "precision instrument" language as the
+                  section-label hairline ticks. No circles/geometry, just lines. */}
+              <div
+                aria-hidden="true"
+                className="hidden md:block absolute top-0 -bottom-16 left-52 w-24 pointer-events-none select-none"
+                style={{
+                  backgroundImage: 'repeating-linear-gradient(to right, #1A1A1A 0px, #1A1A1A 1px, transparent 1px, transparent 12px)',
+                  maskImage: 'linear-gradient(to bottom, black, transparent)',
+                }}
+              />
+
+              {/* Oversized monogram — quiet dark brand watermark, flat fill. */}
               <span
                 aria-hidden="true"
-                className="block h-28 md:h-36 w-28 md:w-36 mb-8 bg-[#AAEE00] opacity-[0.14] select-none pointer-events-none"
+                className="block h-40 md:h-56 w-40 md:w-56 mb-10 bg-[#242424] select-none pointer-events-none"
                 style={{
                   WebkitMaskImage: 'url(/images/logo.svg)',
                   maskImage: 'url(/images/logo.svg)',
@@ -129,47 +154,39 @@ export default function ContactPage() {
                   maskPosition: 'left center',
                 }}
               />
-              <ScrollReveal>
-                <p
-                  className="font-ui font-medium uppercase tracking-[0.12em] text-[0.6875rem] mb-8 label-text"
-                  style={{ color: '#AAEE00' }}
-                >
-                  ── Studio
-                </p>
+              <ScrollReveal trace>
                 <h2
-                  className="font-display font-bold text-[#EDEAE4] tracking-[-0.01em]"
-                  style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)' }}
+                  className="font-display font-extrabold text-[#EDEAE4] leading-[0.96] tracking-[-0.02em]"
+                  style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)' }}
                 >
-                  {site.name}
+                  Every pixel.
+                  <br />
+                  Every detail.
                 </h2>
 
-                <div className="mt-8 flex flex-col gap-5">
-                  <a
-                    href={`mailto:${site.email}`}
-                    className="font-ui text-[0.875rem] w-fit transition-colors duration-200 hover:text-[#AAEE00]"
-                    style={{ color: '#7A7A7A' }}
-                  >
-                    {site.email}
-                  </a>
-                  <SocialLinks size={20} gap="gap-6" />
+                <div className="mt-12 flex flex-col gap-8">
+                  {/* Availability block */}
+                  <div className="pb-6 border-b" style={{ borderColor: '#AAEE00' }}>
+                    <p
+                      className="font-ui font-medium uppercase tracking-[0.12em] text-[0.6875rem] mb-3 label-text"
+                      style={{ color: '#3D3D3D' }}
+                    >
+                      Availability
+                    </p>
+                    <p className="font-body text-[1.0625rem] text-[#EDEAE4]">
+                      Open to new commissions
+                    </p>
+                    <p
+                      className="font-ui text-[0.8125rem] mt-1"
+                      style={{ color: '#7A7A7A' }}
+                    >
+                      Response within 24 hours
+                    </p>
+                  </div>
                 </div>
 
-                <div className="mt-12 pt-12 border-t border-[#1A1A1A]">
-                  <p
-                    className="font-ui font-medium uppercase tracking-[0.12em] text-[0.6875rem] mb-4 label-text"
-                    style={{ color: '#3D3D3D' }}
-                  >
-                    Availability
-                  </p>
-                  <p className="font-body text-[1rem] text-[#EDEAE4]">
-                    Open to new commissions
-                  </p>
-                  <p
-                    className="font-ui text-[0.8125rem] mt-1"
-                    style={{ color: '#3D3D3D' }}
-                  >
-                    Response within 24 hours
-                  </p>
+                <div className="mt-10">
+                  <SocialLinks size={20} gap="gap-6" />
                 </div>
               </ScrollReveal>
             </div>
@@ -236,47 +253,6 @@ export default function ContactPage() {
                         />
                       </div>
 
-                      {/* Email */}
-                      <div>
-                        <label
-                          htmlFor="email"
-                          className={labelBase}
-                          style={{ color: '#3D3D3D' }}
-                        >
-                          Email <span style={{ color: '#AAEE00' }}>*</span>
-                        </label>
-                        <input
-                          id="email"
-                          type="email"
-                          required
-                          autoComplete="email"
-                          value={form.email}
-                          onChange={(e) => update('email', e.target.value)}
-                          className={inputBase}
-                          placeholder="your@email.com"
-                        />
-                      </div>
-
-                      {/* Company */}
-                      <div>
-                        <label
-                          htmlFor="company"
-                          className={labelBase}
-                          style={{ color: '#3D3D3D' }}
-                        >
-                          Company
-                        </label>
-                        <input
-                          id="company"
-                          type="text"
-                          autoComplete="organization"
-                          value={form.company}
-                          onChange={(e) => update('company', e.target.value)}
-                          className={inputBase}
-                          placeholder="Optional"
-                        />
-                      </div>
-
                       {/* Project type */}
                       <div>
                         <label
@@ -308,14 +284,45 @@ export default function ContactPage() {
                         </select>
                       </div>
 
-                      {/* Message */}
+                      {/* Timeline */}
+                      <div>
+                        <label
+                          htmlFor="timeline"
+                          className={labelBase}
+                          style={{ color: '#3D3D3D' }}
+                        >
+                          Timeline
+                        </label>
+                        <select
+                          id="timeline"
+                          value={form.timeline}
+                          onChange={(e) => update('timeline', e.target.value)}
+                          className={`${inputBase} appearance-none cursor-pointer`}
+                          style={{
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%237A7A7A' stroke-width='1.5' stroke-linecap='square'/%3E%3C/svg%3E")`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'right 20px center',
+                          }}
+                        >
+                          <option value="" style={{ backgroundColor: '#111111' }}>
+                            Select timeline
+                          </option>
+                          {timelines.map((t) => (
+                            <option key={t} value={t} style={{ backgroundColor: '#111111' }}>
+                              {t}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* Details */}
                       <div>
                         <label
                           htmlFor="message"
                           className={labelBase}
                           style={{ color: '#3D3D3D' }}
                         >
-                          Message <span style={{ color: '#AAEE00' }}>*</span>
+                          Details <span style={{ color: '#AAEE00' }}>*</span>
                         </label>
                         <textarea
                           id="message"
