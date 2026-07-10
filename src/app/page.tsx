@@ -18,9 +18,10 @@ export default function HomePage() {
         {/* StudioBrief (approach paragraph + 3 pillars) removed from the live page;
             component kept dormant in components/home/StudioBrief.tsx. */}
         <Services />
-        {/* Credibility band — client logo marquee */}
-        <LogoMarquee />
         <ContactCTA />
+        {/* Credibility band — client logo marquee, last on the page, right
+            above the footer. */}
+        <LogoMarquee />
       </main>
       <Footer />
     </>
