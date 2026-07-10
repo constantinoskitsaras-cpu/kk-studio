@@ -21,4 +21,7 @@ export const site = {
   vimeoId: '1203181805',
   // Showreel — opened from the hero "Watch Reel" button (unlisted Vimeo is fine).
   reelVimeoId: '1205572536',
+  // Self-hosted hero background reel (Cloudflare R2 — too large for Workers
+  // static assets, so it isn't bundled with the site build).
+  videoCdn: 'https://pub-f42b1b1e861643929d4718ff160507d2.r2.dev/Portfolio',
 } as const

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { site } from '@/lib/site'
 
 export function Hero() {
   const [mounted, setMounted] = useState(false)
@@ -28,7 +29,7 @@ export function Hero() {
   // mount (single render) so the heavy file never downloads on mobile.
   useEffect(() => {
     const mobile = window.matchMedia('(max-width: 767px)').matches
-    setVideoSrc(mobile ? '/videos/reel-mobile.mp4' : '/videos/reel.mp4')
+    setVideoSrc(mobile ? `${site.videoCdn}/reel-mobile.mp4` : `${site.videoCdn}/reel.mp4`)
   }, [])
 
   // Seamless loop — cross-dip the reel's opacity at BOTH ends: fade OUT over the
