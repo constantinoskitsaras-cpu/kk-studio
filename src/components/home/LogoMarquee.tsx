@@ -14,11 +14,11 @@ import { useT } from '@/lib/i18n/context'
 // Logos are uniform tight-cropped wordmark exports, so a single height keeps
 // them all at the same visual scale.
 const clients = [
-  { name: 'Mercedes-Benz', src: '/images/logos/mercedes.svg', h: 'h-7 md:h-9' },
-  { name: 'Bvlgari',       src: '/images/logos/bvlgari.svg',  h: 'h-4 md:h-5' },
-  { name: 'Škoda',         src: '/images/logos/skoda.svg',    h: 'h-4 md:h-5' },
-  { name: 'Lexus',         src: '/images/logos/lexus.svg',    h: 'h-4 md:h-5' },
-  { name: 'Toyota',        src: '/images/logos/toyota.svg',   h: 'h-4 md:h-5' },
+  { name: 'Mercedes-Benz', src: '/images/logos/mercedes.svg', h: 'h-9 md:h-11' },
+  { name: 'Bvlgari',       src: '/images/logos/bvlgari.svg',  h: 'h-5 md:h-7' },
+  { name: 'Škoda',         src: '/images/logos/skoda.svg',    h: 'h-5 md:h-7' },
+  { name: 'Lexus',         src: '/images/logos/lexus.svg',    h: 'h-5 md:h-7' },
+  { name: 'Toyota',        src: '/images/logos/toyota.svg',   h: 'h-5 md:h-7' },
 ]
 
 function MarqueeItem({ name, src, h }: { name: string; src: string; h: string }) {
@@ -49,14 +49,14 @@ export function LogoMarquee() {
 
   return (
     <section
-      className="pt-16 md:pt-20 pb-16 md:pb-24"
+      className="pt-20 md:pt-24 pb-20 md:pb-28"
       aria-label={t('home.logoMarquee.ariaLabel')}
     >
       {/* Quiet label — fades in on scroll, label variant (Y=8px) */}
       <ScrollReveal variant="label">
         <p
-          className="font-ui font-medium uppercase tracking-[0.12em] label-text text-center mb-12 md:mb-16"
-          style={{ fontSize: '0.6875rem', color: '#3D3D3D' }}
+          className="font-ui font-medium uppercase tracking-[0.12em] label-text text-center mb-14 md:mb-20"
+          style={{ fontSize: '0.9375rem', color: '#AAEE00' }}
         >
           {t('home.logoMarquee.label')}
         </p>

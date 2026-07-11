@@ -39,7 +39,7 @@ export const dictionaries = {
         ],
       },
       logoMarquee: {
-        label: 'Experience Collaboration',
+        label: 'Experience',
         ariaLabel: 'Selected clients: Mercedes-Benz, Bvlgari, Škoda, Lexus, Toyota',
       },
       contactCta: {
@@ -161,7 +161,7 @@ export const dictionaries = {
         ],
       },
       logoMarquee: {
-        label: 'Συνεργασίες',
+        label: 'Εμπειρία',
         ariaLabel: 'Επιλεγμένοι πελάτες: Mercedes-Benz, Bvlgari, Škoda, Lexus, Toyota',
       },
       contactCta: {

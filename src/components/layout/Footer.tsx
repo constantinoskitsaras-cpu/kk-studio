@@ -47,13 +47,6 @@ export function Footer() {
 
           {/* Links */}
           <div className="flex items-center gap-6">
-            <a
-              href={`mailto:${site.email}`}
-              className="font-ui text-[0.75rem] tracking-[0.06em] transition-colors duration-200 hover:text-[#AAEE00]"
-              style={{ color: '#7A7A7A' }}
-            >
-              {site.email}
-            </a>
             <SocialLinks size={17} gap="gap-5" />
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

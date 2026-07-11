@@ -163,7 +163,7 @@ export function AboutContent() {
 
           <ScrollReveal variant="label" delay={80}>
             <div className="mt-8 md:mt-10">
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-5">
+              <div className="flex flex-wrap items-center gap-x-10 gap-y-7">
                 {software.map((s) => (
                   <span key={s.name} className="inline-flex items-center gap-2.5">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -171,8 +171,8 @@ export function AboutContent() {
                       src={s.icon}
                       alt=""
                       aria-hidden="true"
-                      className="h-5 w-5 object-contain select-none"
-                      style={{ filter: 'grayscale(1) contrast(1.6) brightness(1.4)', opacity: 0.8 }}
+                      className="h-8 w-8 object-contain select-none"
+                      style={{ opacity: 0.95 }}
                     />
                     <span
                       className="font-ui font-medium uppercase tracking-[0.08em] text-[0.8125rem]"
