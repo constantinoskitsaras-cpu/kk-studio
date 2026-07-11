@@ -1,6 +1,7 @@
 'use client'
 
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { useT } from '@/lib/i18n/context'
 
 /*
   ── LOGO MARQUEE ──────────────────────────────────────────────────
@@ -39,6 +40,7 @@ function MarqueeItem({ name, src, h }: { name: string; src: string; h: string })
 }
 
 export function LogoMarquee() {
+  const t = useT()
   // Each copy already spans wide viewports; we render FOUR identical copies so the
   // -50% keyframe (which scrolls exactly two copies) loops seamlessly and the track
   // is always wider than the screen — at least 1-2 logos are visible at all times.
@@ -48,7 +50,7 @@ export function LogoMarquee() {
   return (
     <section
       className="pt-16 md:pt-20 pb-16 md:pb-24"
-      aria-label="Selected clients: Mercedes-Benz, Bvlgari, Škoda, Lexus, Toyota"
+      aria-label={t('home.logoMarquee.ariaLabel')}
     >
       {/* Quiet label — fades in on scroll, label variant (Y=8px) */}
       <ScrollReveal variant="label">
@@ -56,7 +58,7 @@ export function LogoMarquee() {
           className="font-ui font-medium uppercase tracking-[0.12em] label-text text-center mb-12 md:mb-16"
           style={{ fontSize: '0.6875rem', color: '#3D3D3D' }}
         >
-          Experience Collaboration
+          {t('home.logoMarquee.label')}
         </p>
       </ScrollReveal>
 

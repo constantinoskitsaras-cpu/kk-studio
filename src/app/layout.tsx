@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
-import { Bebas_Neue, Space_Grotesk, Inter } from 'next/font/google'
+import { Bebas_Neue, Space_Grotesk, Inter, Advent_Pro, IBM_Plex_Sans } from 'next/font/google'
 import { site } from '@/lib/site'
 import { IntroLoader } from '@/components/ui/IntroLoader'
+import { LocaleProvider } from '@/lib/i18n/context'
 import './globals.css'
 
 // Condensed display face for headings. Single weight (400) by design — see the
@@ -23,8 +24,25 @@ const spaceGrotesk = Space_Grotesk({
 
 const inter = Inter({
   variable: '--font-inter',
-  subsets: ['latin'],
+  subsets: ['latin', 'greek'],
   weight: ['300', '400', '500', '600'],
+  display: 'swap',
+})
+
+// Neither Bebas Neue nor Space Grotesk ship Greek glyphs — these two stand
+// in for display headings and UI labels only when the site is in Greek
+// (swapped in via the `html[lang="el"]` override in globals.css).
+const adventPro = Advent_Pro({
+  variable: '--font-advent-pro',
+  subsets: ['latin', 'greek'],
+  weight: ['700', '800'],
+  display: 'swap',
+})
+
+const ibmPlexSans = IBM_Plex_Sans({
+  variable: '--font-plex-sans',
+  subsets: ['latin', 'greek'],
+  weight: ['500', '600'],
   display: 'swap',
 })
 
@@ -55,11 +73,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${spaceGrotesk.variable} ${inter.variable}`}
+      className={`${bebasNeue.variable} ${spaceGrotesk.variable} ${inter.variable} ${adventPro.variable} ${ibmPlexSans.variable}`}
     >
       <body>
-        <IntroLoader />
-        {children}
+        <LocaleProvider>
+          <IntroLoader />
+          {children}
+        </LocaleProvider>
       </body>
     </html>
   )

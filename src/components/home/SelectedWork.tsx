@@ -4,6 +4,8 @@ import { useRef, useEffect, useState } from 'react'
 import { ProjectFrameFull } from '@/components/home/ProjectFrame'
 import { featuredProjects } from '@/lib/projects'
 import { useIsMobile } from '@/lib/use-is-mobile'
+import { useLocale } from '@/lib/i18n/context'
+import { localizeProject } from '@/lib/i18n/projectTranslations'
 
 const EXPO_OUT = 'cubic-bezier(0.16, 1, 0.3, 1)'
 
@@ -80,8 +82,9 @@ function SectionOpener({ count }: { count: string }) {
 }
 
 export function SelectedWork() {
+  const { locale } = useLocale()
   // Curated proof — the featured frames, not a gallery grid.
-  const frames = featuredProjects.slice(0, 4)
+  const frames = featuredProjects.slice(0, 4).map((p) => localizeProject(p, locale))
   const count = String(frames.length).padStart(2, '0')
 
   return (

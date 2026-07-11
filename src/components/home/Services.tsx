@@ -1,23 +1,20 @@
+'use client'
+
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { SectionLabel } from '@/components/ui/SectionLabel'
-
-// Capabilities — each carries a short one-line descriptor and a lime accent line.
-const services = [
-  { title: 'Look Development', body: 'Materials, light, and grade tuned until the frame reads as photographed.' },
-  { title: 'Real-Time Rendering', body: 'Unreal Engine pipelines that deliver cinematic quality at frame rate.' },
-  { title: 'Cinematic Animation', body: 'Camera, motion, and pacing directed for tension and impact.' },
-  { title: 'VFX & Compositing', body: 'Procedural FX, shading, and final integration across the shot.' },
-  { title: 'Developer', body: 'Fast, considered front-ends that carry the same craft as the work.' },
-]
+import { useT } from '@/lib/i18n/context'
 
 export function Services() {
+  const t = useT()
+  const services = t<{ title: string; body: string }[]>('home.services.items')
+
   return (
     <section
       className="pt-20 md:pt-28 pb-20 md:pb-28 px-6 md:px-10 border-t border-[#1A1A1A]"
       style={{ maxWidth: '1280px', margin: '0 auto' }}
     >
       <ScrollReveal trace>
-        <SectionLabel className="justify-start">Services</SectionLabel>
+        <SectionLabel className="justify-start">{t('home.services.label')}</SectionLabel>
       </ScrollReveal>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 mt-16">

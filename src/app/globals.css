@@ -60,6 +60,15 @@
   --kk-border-mid:      #262626;
 }
 
+/* Bebas Neue and Space Grotesk ship no Greek glyphs — swap in Greek-capable
+   stand-ins for display headings and UI labels when the page is in Greek.
+   Overrides the --font-display/--font-ui theme vars from @theme above, so
+   every existing font-display/font-ui utility class picks it up for free. */
+html[lang="el"] {
+  --font-display: var(--font-advent-pro), 'Arial Narrow', sans-serif;
+  --font-ui:      var(--font-plex-sans), sans-serif;
+}
+
 /* ── Base reset ──────────────────────────────────────────── */
 /* Wrapped in @layer base so it participates in Tailwind v4's cascade layers —
    unlayered CSS always beats layered CSS regardless of specificity, which was

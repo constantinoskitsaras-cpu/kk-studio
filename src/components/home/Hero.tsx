@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { site } from '@/lib/site'
+import { useT } from '@/lib/i18n/context'
 
 export function Hero() {
+  const t = useT()
   const [mounted, setMounted] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const playingRef = useRef(false)
@@ -157,7 +159,7 @@ export function Hero() {
                 className="font-display font-extrabold text-[#EDEAE4] leading-[0.94] tracking-[-0.02em]"
                 style={{ fontSize: 'clamp(2.25rem, 5.5vw, 5rem)' }}
               >
-                Crafted frame by frame. Rendered in real time.
+                {t('home.hero.headline')}
               </h1>
               {/* Lime underline — fills left→right as the hero scrolls out of view */}
               <motion.div
@@ -177,7 +179,7 @@ export function Hero() {
                   fontSize: 'clamp(0.625rem, 0.9vw, 0.75rem)',
                 }}
               >
-                VFX generalist &amp; 3D artist — real-time rendering, look development, and cinematic 3D for studios and brands.
+                {t('home.hero.body')}
               </p>
             </div>
           </div>
@@ -194,7 +196,7 @@ export function Hero() {
           className="font-ui text-[0.625rem] uppercase tracking-[0.18em]"
           style={{ color: '#3D3D3D', writingMode: 'vertical-rl' }}
         >
-          Scroll
+          {t('common.scroll')}
         </span>
         {/* Architectural line-draw — no bounce */}
         <div className="w-px h-8 overflow-hidden" style={{ backgroundColor: '#1A1A1A' }}>

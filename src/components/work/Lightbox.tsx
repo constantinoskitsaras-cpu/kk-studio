@@ -3,6 +3,7 @@
 import { useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { useT } from '@/lib/i18n/context'
 
 interface LightboxProps {
   images: string[]
@@ -16,6 +17,7 @@ interface LightboxProps {
 // Full-screen render inspector — object-contain at full resolution, never cropped.
 export function Lightbox({ images, title, index, onClose, onIndexChange }: LightboxProps) {
   const reduce = useReducedMotion()
+  const t = useT()
   const open = index !== null
   const closeRef = useRef<HTMLButtonElement>(null)
 
@@ -88,7 +90,7 @@ export function Lightbox({ images, title, index, onClose, onIndexChange }: Light
               <button
                 ref={closeRef}
                 onClick={onClose}
-                aria-label="Close"
+                aria-label={t('common.close')}
                 className="text-[#7A7A7A] transition-colors duration-200 hover:text-[#AAEE00] focus-visible:text-[#AAEE00]"
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -103,7 +105,7 @@ export function Lightbox({ images, title, index, onClose, onIndexChange }: Light
           {images.length > 1 && (
             <button
               onClick={(e) => { e.stopPropagation(); goPrev() }}
-              aria-label="Previous image"
+              aria-label={t('common.previousImage')}
               className="absolute left-2 md:left-6 z-[2] p-3 text-[#7A7A7A] transition-colors duration-200 hover:text-[#AAEE00] focus-visible:text-[#AAEE00]"
             >
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -136,7 +138,7 @@ export function Lightbox({ images, title, index, onClose, onIndexChange }: Light
           {images.length > 1 && (
             <button
               onClick={(e) => { e.stopPropagation(); goNext() }}
-              aria-label="Next image"
+              aria-label={t('common.nextImage')}
               className="absolute right-2 md:right-6 z-[2] p-3 text-[#7A7A7A] transition-colors duration-200 hover:text-[#AAEE00] focus-visible:text-[#AAEE00]"
             >
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">

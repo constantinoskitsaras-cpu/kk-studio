@@ -5,12 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LinkedInIcon, ArtStationIcon, VimeoIcon, YouTubeIcon } from '@/components/ui/SocialIcons'
 import { site } from '@/lib/site'
-
-const navLinks = [
-  { href: '/work',    label: 'Work'    },
-  { href: '/about',   label: 'About'   },
-  { href: '/contact', label: 'Contact' },
-]
+import { useLocale, useT } from '@/lib/i18n/context'
 
 const navSocials = [
   { label: 'YouTube',    href: site.social.youtube,    Icon: YouTubeIcon },
@@ -19,10 +14,46 @@ const navSocials = [
   { label: 'LinkedIn',   href: site.social.linkedin,   Icon: LinkedInIcon },
 ]
 
+// Quiet text toggle — matches the nav's own label typography instead of an
+// imported flag/globe icon, so it reads as part of the system, not a widget.
+function LanguageToggle({ className = '' }: { className?: string }) {
+  const { locale, setLocale } = useLocale()
+  return (
+    <div className={`flex items-center gap-1.5 font-ui font-medium uppercase tracking-[0.1em] text-[0.6875rem] ${className}`}>
+      <button
+        type="button"
+        onClick={() => setLocale('en')}
+        aria-current={locale === 'en'}
+        className="transition-colors duration-200 hover:text-[#AAEE00]"
+        style={{ color: locale === 'en' ? '#EDEAE4' : '#3D3D3D' }}
+      >
+        EN
+      </button>
+      <span aria-hidden="true" style={{ color: '#3D3D3D' }}>/</span>
+      <button
+        type="button"
+        onClick={() => setLocale('el')}
+        aria-current={locale === 'el'}
+        className="transition-colors duration-200 hover:text-[#AAEE00]"
+        style={{ color: locale === 'el' ? '#EDEAE4' : '#3D3D3D' }}
+      >
+        ΕΛ
+      </button>
+    </div>
+  )
+}
+
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
+  const t = useT()
+
+  const navLinks = [
+    { href: '/work',    label: t('nav.work')    },
+    { href: '/about',   label: t('nav.about')   },
+    { href: '/contact', label: t('nav.contact') },
+  ]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -78,7 +109,7 @@ export function Navigation() {
               color can transition to lime on hover instead of just dimming. */}
           <Link
             href="/"
-            aria-label="Konstantinos Kitsaras — Home"
+            aria-label={t('nav.homeAriaLabel')}
             className="group flex items-center ml-1 md:ml-4"
           >
             <span
@@ -115,11 +146,13 @@ export function Navigation() {
               ))}
             </div>
 
+            <LanguageToggle className="hidden md:flex" />
+
             {/* Mobile menu button */}
             <button
               className="md:hidden flex flex-col justify-center items-end gap-[5px] w-10 h-10 mr-1"
               onClick={() => setMenuOpen(!menuOpen)}
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
               aria-expanded={menuOpen}
             >
               <span
@@ -188,6 +221,9 @@ export function Navigation() {
               </Link>
             )
           })}
+          <LanguageToggle
+            className="!text-[0.875rem]"
+          />
         </div>
       </div>
     </>

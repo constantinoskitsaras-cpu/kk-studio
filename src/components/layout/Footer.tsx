@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { site } from '@/lib/site'
 import { SocialLinks } from '@/components/ui/SocialLinks'
+import { useT } from '@/lib/i18n/context'
 
 // Client credibility band now lives on the homepage as <LogoMarquee /> (a single
 // logo marquee), so the footer no longer carries its own collaborations strip.
 export function Footer() {
   const [showBackTop, setShowBackTop] = useState(false)
+  const t = useT()
 
   useEffect(() => {
     const onScroll = () => setShowBackTop(window.scrollY > 300)
@@ -40,7 +42,7 @@ export function Footer() {
 
           {/* Copyright */}
           <p className="font-ui text-[0.75rem] tracking-[0.06em]" style={{ color: '#3D3D3D' }}>
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
+            © {new Date().getFullYear()} {site.name}. {t('footer.rights')}
           </p>
 
           {/* Links */}
@@ -53,9 +55,9 @@ export function Footer() {
                 color: showBackTop ? '#AAEE00' : '#3D3D3D',
                 opacity: showBackTop ? 1 : 0.4,
               }}
-              aria-label="Back to top"
+              aria-label={t('footer.backToTopAriaLabel')}
             >
-              ↑ Top
+              ↑ {t('footer.backToTop')}
             </button>
           </div>
         </div>

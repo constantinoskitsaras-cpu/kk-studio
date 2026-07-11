@@ -7,28 +7,15 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { Button } from '@/components/ui/Button'
 import { SocialLinks } from '@/components/ui/SocialLinks'
 import { site } from '@/lib/site'
+import { useT } from '@/lib/i18n/context'
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
-const projectTypes = [
-  'Automotive CGI',
-  'Unreal Engine Visualization',
-  'Cinematic Stills',
-  'Motion & Direction',
-  'Campaign Production',
-  'Web Design & Development',
-  'Other',
-]
-
-const timelines = [
-  'ASAP',
-  '1–2 weeks',
-  '1 month',
-  '2–3 months',
-  'Flexible',
-]
-
 export default function ContactPage() {
+  const t = useT()
+  const projectTypes = t<string[]>('contact.projectTypes')
+  const timelines = t<string[]>('contact.timelines')
+
   const [formState, setFormState] = useState<FormState>('idle')
   const [form, setForm] = useState({
     name: '',
@@ -88,15 +75,15 @@ export default function ContactPage() {
               className="font-ui font-medium uppercase tracking-[0.12em] text-[0.6875rem] mb-6 label-text"
               style={{ color: '#AAEE00' }}
             >
-              ── Contact
+              {t('contact.eyebrow')}
             </p>
             <h1
               className="font-display font-extrabold text-[#EDEAE4] leading-[0.94] tracking-[-0.02em]"
               style={{ fontSize: 'clamp(2.25rem, 5.5vw, 5rem)' }}
             >
-              Start a
+              {t('contact.titleLine1')}
               <br />
-              conversation.
+              {t('contact.titleLine2')}
             </h1>
           </ScrollReveal>
 
@@ -105,9 +92,7 @@ export default function ContactPage() {
               className="font-body font-light text-[1rem] md:text-[1.125rem] leading-[1.65] max-w-prose mt-8"
               style={{ color: '#7A7A7A' }}
             >
-              Open for look development, real-time rendering, cinematic animation,
-              and VFX — automotive and beyond. Tell me about the project and the
-              deadline.
+              {t('contact.intro')}
             </p>
           </ScrollReveal>
         </div>
@@ -142,7 +127,7 @@ export default function ContactPage() {
               {/* Oversized monogram — quiet dark brand watermark, flat fill. */}
               <span
                 aria-hidden="true"
-                className="block h-40 md:h-56 w-40 md:w-56 mb-10 bg-[#242424] select-none pointer-events-none"
+                className="block h-52 md:h-72 w-52 md:w-72 mb-10 bg-[#242424] select-none pointer-events-none"
                 style={{
                   WebkitMaskImage: 'url(/images/logo.svg)',
                   maskImage: 'url(/images/logo.svg)',
@@ -159,28 +144,28 @@ export default function ContactPage() {
                   className="font-display font-extrabold text-[#EDEAE4] leading-[0.96] tracking-[-0.02em]"
                   style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)' }}
                 >
-                  Every pixel.
+                  {t('contact.headlineLine1')}
                   <br />
-                  Every detail.
+                  {t('contact.headlineLine2')}
                 </h2>
 
                 <div className="mt-12 flex flex-col gap-8">
                   {/* Availability block */}
-                  <div className="pb-6 border-b" style={{ borderColor: '#AAEE00' }}>
+                  <div>
                     <p
                       className="font-ui font-medium uppercase tracking-[0.12em] text-[0.6875rem] mb-3 label-text"
                       style={{ color: '#3D3D3D' }}
                     >
-                      Availability
+                      {t('contact.availabilityLabel')}
                     </p>
                     <p className="font-body text-[1.0625rem] text-[#EDEAE4]">
-                      Open to new commissions
+                      {t('contact.availabilityLine1')}
                     </p>
                     <p
                       className="font-ui text-[0.8125rem] mt-1"
                       style={{ color: '#7A7A7A' }}
                     >
-                      Response within 24 hours
+                      {t('contact.availabilityLine2')}
                     </p>
                   </div>
                 </div>
@@ -204,17 +189,17 @@ export default function ContactPage() {
                       className="font-display font-bold text-[#EDEAE4] tracking-[-0.01em]"
                       style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
                     >
-                      Message received.
+                      {t('contact.successHeadline')}
                     </h3>
                     <p
                       className="font-body text-[1rem] leading-[1.65] mt-6 max-w-prose"
                       style={{ color: '#7A7A7A' }}
                     >
-                      Thank you. I&rsquo;ll be in touch within 24 hours.
+                      {t('contact.successBody')}
                     </p>
                     <div className="mt-10">
                       <Button href="/work" variant="secondary">
-                        → Back to Work
+                        {t('contact.successButton')}
                       </Button>
                     </div>
                   </div>
@@ -228,7 +213,7 @@ export default function ContactPage() {
                       className="font-ui font-medium uppercase tracking-[0.12em] text-[0.6875rem] mb-8 label-text"
                       style={{ color: '#AAEE00' }}
                     >
-                      ── Inquiry
+                      {t('contact.formEyebrow')}
                     </p>
 
                     <div className="flex flex-col gap-5">
@@ -239,7 +224,7 @@ export default function ContactPage() {
                           className={labelBase}
                           style={{ color: '#3D3D3D' }}
                         >
-                          Name <span style={{ color: '#AAEE00' }}>*</span>
+                          {t('contact.nameLabel')} <span style={{ color: '#AAEE00' }}>*</span>
                         </label>
                         <input
                           id="name"
@@ -249,7 +234,7 @@ export default function ContactPage() {
                           value={form.name}
                           onChange={(e) => update('name', e.target.value)}
                           className={inputBase}
-                          placeholder="Your name"
+                          placeholder={t('contact.namePlaceholder')}
                         />
                       </div>
 
@@ -260,7 +245,7 @@ export default function ContactPage() {
                           className={labelBase}
                           style={{ color: '#3D3D3D' }}
                         >
-                          Project Type
+                          {t('contact.projectTypeLabel')}
                         </label>
                         <select
                           id="projectType"
@@ -274,11 +259,11 @@ export default function ContactPage() {
                           }}
                         >
                           <option value="" style={{ backgroundColor: '#111111' }}>
-                            Select type
+                            {t('contact.projectTypePlaceholder')}
                           </option>
-                          {projectTypes.map((t) => (
-                            <option key={t} value={t} style={{ backgroundColor: '#111111' }}>
-                              {t}
+                          {projectTypes.map((pt) => (
+                            <option key={pt} value={pt} style={{ backgroundColor: '#111111' }}>
+                              {pt}
                             </option>
                           ))}
                         </select>
@@ -291,7 +276,7 @@ export default function ContactPage() {
                           className={labelBase}
                           style={{ color: '#3D3D3D' }}
                         >
-                          Timeline
+                          {t('contact.timelineLabel')}
                         </label>
                         <select
                           id="timeline"
@@ -305,11 +290,11 @@ export default function ContactPage() {
                           }}
                         >
                           <option value="" style={{ backgroundColor: '#111111' }}>
-                            Select timeline
+                            {t('contact.timelinePlaceholder')}
                           </option>
-                          {timelines.map((t) => (
-                            <option key={t} value={t} style={{ backgroundColor: '#111111' }}>
-                              {t}
+                          {timelines.map((tl) => (
+                            <option key={tl} value={tl} style={{ backgroundColor: '#111111' }}>
+                              {tl}
                             </option>
                           ))}
                         </select>
@@ -322,7 +307,7 @@ export default function ContactPage() {
                           className={labelBase}
                           style={{ color: '#3D3D3D' }}
                         >
-                          Details <span style={{ color: '#AAEE00' }}>*</span>
+                          {t('contact.detailsLabel')} <span style={{ color: '#AAEE00' }}>*</span>
                         </label>
                         <textarea
                           id="message"
@@ -331,7 +316,7 @@ export default function ContactPage() {
                           value={form.message}
                           onChange={(e) => update('message', e.target.value)}
                           className={`${inputBase} resize-y min-h-[140px]`}
-                          placeholder="Tell me about your project — scope, timeline, and what you're looking to achieve."
+                          placeholder={t('contact.detailsPlaceholder')}
                         />
                       </div>
 
@@ -342,14 +327,14 @@ export default function ContactPage() {
                         disabled={formState === 'submitting'}
                         className="mt-2"
                       >
-                        {formState === 'submitting' ? 'Sending...' : '→ Send Inquiry'}
+                        {formState === 'submitting' ? t('contact.sending') : t('contact.submit')}
                       </Button>
 
                       <p
                         className="font-ui text-[0.6875rem] text-center label-text"
                         style={{ color: '#3D3D3D' }}
                       >
-                        No spam. No subscriptions. Direct to studio.
+                        {t('contact.finePrint')}
                       </p>
                     </div>
                   </form>

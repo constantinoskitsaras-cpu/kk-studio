@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { Lightbox } from '@/components/work/Lightbox'
+import { useT } from '@/lib/i18n/context'
 
 interface GalleryGridProps {
   images: string[]
@@ -13,6 +14,7 @@ interface GalleryGridProps {
 // Gallery wall — single column, full width. Each frame opens the lightbox for
 // full-resolution inspection (the craft-proof moment).
 export function GalleryGrid({ images, title }: GalleryGridProps) {
+  const t = useT()
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   if (images.length === 0) return null
@@ -47,7 +49,7 @@ export function GalleryGrid({ images, title }: GalleryGridProps) {
                   <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.4" />
                   <line x1="11" y1="11" x2="15" y2="15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="square" />
                 </svg>
-                View
+                {t('common.view')}
               </span>
             </button>
           </ScrollReveal>

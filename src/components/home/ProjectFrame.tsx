@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion'
 import type { Project } from '@/lib/projects'
 import { useIsMobile } from '@/lib/use-is-mobile'
+import { useT } from '@/lib/i18n/context'
 
 const EXPO_OUT = 'cubic-bezier(0.16, 1, 0.3, 1)'
 
@@ -190,6 +191,7 @@ export function ProjectFrameFull({
 }) {
   const { ref, revealed, isMobile } = useFrameReveal()
   const reduce = useReducedMotion()
+  const t = useT()
 
   // ── Follow-cursor "View" pill — desktop/hover-only signature ──
   const [hovered, setHovered] = useState(false)
@@ -226,7 +228,7 @@ export function ProjectFrameFull({
       <Link
         href={`/work/${project.slug}`}
         className="block group relative"
-        aria-label={`View project: ${project.title}`}
+        aria-label={`${t('common.viewProject')}: ${project.title}`}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onMouseMove={handleMove}
@@ -269,7 +271,7 @@ export function ProjectFrameFull({
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M7 17 L17 7 M9 7 H17 V15" stroke="#AAEE00" strokeWidth="1.6" strokeLinecap="square" />
               </svg>
-              View
+              {t<string>('common.view')}
             </motion.span>
           </motion.div>
         )}
