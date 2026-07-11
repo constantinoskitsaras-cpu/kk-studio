@@ -11,16 +11,17 @@ import { useT } from '@/lib/i18n/context'
 // dark gradient fallback shows.
 const PORTRAIT_SRC: string | undefined = '/images/about.webp'
 
-// Software — the working toolset, shown as a quiet credential strip.
+// Software — the working toolset, shown as a quiet credential strip. Icons are
+// forced monochrome (brightness(0) invert(1)) so mixed-brand artwork reads as
+// one cohesive row, same treatment as the client LogoMarquee.
 const software = [
-  'Unreal Engine 5',
-  '3ds Max',
-  'V-Ray',
-  'Houdini',
-  'Maya',
-  'Substance Painter',
-  'DaVinci Resolve',
-  'TyFlow',
+  { name: 'Unreal Engine 5', icon: '/images/software/unreal_engine.svg' },
+  { name: '3ds Max',         icon: '/images/software/3ds_max.svg' },
+  { name: 'V-Ray',           icon: '/images/software/vray.svg' },
+  { name: 'Maya',            icon: '/images/software/maya.svg' },
+  { name: 'Adobe Suite',     icon: '/images/software/adobe.svg' },
+  { name: 'DaVinci Resolve', icon: '/images/software/davinci.svg' },
+  { name: 'TyFlow',          icon: '/images/software/tyflow.svg' },
 ]
 
 export function AboutContent() {
@@ -162,14 +163,23 @@ export function AboutContent() {
 
           <ScrollReveal variant="label" delay={80}>
             <div className="mt-8 md:mt-10">
-              <div className="flex flex-wrap gap-x-5 gap-y-3">
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-5">
                 {software.map((s) => (
-                  <span
-                    key={s}
-                    className="font-ui font-medium uppercase tracking-[0.08em] text-[0.8125rem]"
-                    style={{ color: '#7A7A7A' }}
-                  >
-                    {s}
+                  <span key={s.name} className="inline-flex items-center gap-2.5">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={s.icon}
+                      alt=""
+                      aria-hidden="true"
+                      className="h-5 w-5 object-contain select-none"
+                      style={{ filter: 'grayscale(1) contrast(1.6) brightness(1.4)', opacity: 0.8 }}
+                    />
+                    <span
+                      className="font-ui font-medium uppercase tracking-[0.08em] text-[0.8125rem]"
+                      style={{ color: '#7A7A7A' }}
+                    >
+                      {s.name}
+                    </span>
                   </span>
                 ))}
               </div>

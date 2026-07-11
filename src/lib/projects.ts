@@ -62,6 +62,7 @@ export const projects: Project[] = [
       '/images/work/lamborghini-reventon/lamborghini-09.jpg',
       '/images/work/lamborghini-reventon/lamborghini-10.jpg',
       '/images/work/lamborghini-reventon/lamborghini-11.jpg',
+      '/images/work/lamborghini-reventon/lamborghini-12.jpg',
     ],
     featured: true,
     featuredOrder: 1,
