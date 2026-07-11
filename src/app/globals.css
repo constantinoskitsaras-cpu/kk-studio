@@ -171,8 +171,8 @@ body {
 }
 /* Edge dissolve — logos fade in/out at both ends, no hard cut */
 .marquee-mask {
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
-          mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
 }
 
 /* ── Reduced motion ──────────────────────────────────────── */

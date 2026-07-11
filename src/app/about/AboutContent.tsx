@@ -36,7 +36,7 @@ export function AboutContent() {
 
         {/* Hero — leads with the name, profile-style */}
         <div
-          className="px-6 md:px-10 pt-20 md:pt-32 pb-16 md:pb-24"
+          className="px-6 md:px-10 pt-20 md:pt-32 pb-8 md:pb-10"
           style={{ maxWidth: '1280px', margin: '0 auto' }}
         >
           <ScrollReveal>
@@ -68,10 +68,10 @@ export function AboutContent() {
 
         {/* Profile — portrait placeholder + bio */}
         <div
-          className="px-6 md:px-10 pb-24 md:pb-32"
+          className="px-6 md:px-10 pb-16 md:pb-20"
           style={{ maxWidth: '1280px', margin: '0 auto' }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 pt-24 md:pt-32">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 pt-10 md:pt-14">
 
             {/* Portrait — compact 4:5 that dissolves softly at every edge (no hard frame) */}
             <ScrollReveal variant="frame" className="md:col-span-4">
@@ -149,12 +149,12 @@ export function AboutContent() {
 
         {/* Software — toolset credential strip */}
         <div
-          className="px-6 md:px-10 pb-24 md:pb-32"
+          className="px-6 md:px-10 pb-16 md:pb-20"
           style={{ maxWidth: '1280px', margin: '0 auto' }}
         >
           <ScrollReveal trace>
             <p
-              className="font-ui font-medium uppercase tracking-[0.12em] text-[0.6875rem] pt-16 md:pt-24 mb-2 label-text"
+              className="font-ui font-medium uppercase tracking-[0.12em] text-[0.6875rem] mb-2 label-text"
               style={{ color: '#AAEE00' }}
             >
               {t('about.softwareLabel')}
@@ -165,13 +165,13 @@ export function AboutContent() {
             <div className="mt-8 md:mt-10">
               <div className="flex flex-wrap items-center gap-x-10 gap-y-7">
                 {software.map((s) => (
-                  <span key={s.name} className="inline-flex items-center gap-2.5">
+                  <span key={s.name} className="inline-flex items-center gap-3">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={s.icon}
                       alt=""
                       aria-hidden="true"
-                      className="h-8 w-8 object-contain select-none"
+                      className="h-11 w-11 object-contain select-none"
                       style={{ opacity: 0.95 }}
                     />
                     <span
@@ -194,7 +194,7 @@ export function AboutContent() {
         >
           <ScrollReveal trace>
             <p
-              className="font-ui font-medium uppercase tracking-[0.12em] text-[0.6875rem] pt-16 md:pt-24 mb-2 label-text"
+              className="font-ui font-medium uppercase tracking-[0.12em] text-[0.6875rem] mb-2 label-text"
               style={{ color: '#AAEE00' }}
             >
               {t('about.practiceLabel')}

@@ -52,11 +52,19 @@ export function LogoMarquee() {
       className="pt-20 md:pt-24 pb-20 md:pb-28"
       aria-label={t('home.logoMarquee.ariaLabel')}
     >
+      {/* Quiet horizontal divider — same fading lime hairline as the Contact
+          page's column divider, just laid on its side. */}
+      <div
+        aria-hidden="true"
+        className="mx-auto h-px w-full max-w-xl mb-10 md:mb-12"
+        style={{ background: 'linear-gradient(to right, transparent, #AAEE00, transparent)', opacity: 0.4 }}
+      />
+
       {/* Quiet label — fades in on scroll, label variant (Y=8px) */}
       <ScrollReveal variant="label">
         <p
           className="font-ui font-medium uppercase tracking-[0.12em] label-text text-center mb-14 md:mb-20"
-          style={{ fontSize: '0.9375rem', color: '#AAEE00' }}
+          style={{ fontSize: '0.8125rem', color: '#AAEE00' }}
         >
           {t('home.logoMarquee.label')}
         </p>

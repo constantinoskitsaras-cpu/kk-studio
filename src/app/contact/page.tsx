@@ -117,7 +117,7 @@ export default function ContactPage() {
                   section-label hairline ticks. No circles/geometry, just lines. */}
               <div
                 aria-hidden="true"
-                className="hidden md:block absolute top-0 -bottom-16 left-52 w-24 pointer-events-none select-none"
+                className="hidden md:block absolute top-0 -bottom-16 left-72 w-24 pointer-events-none select-none"
                 style={{
                   backgroundImage: 'repeating-linear-gradient(to right, #1A1A1A 0px, #1A1A1A 1px, transparent 1px, transparent 12px)',
                   maskImage: 'linear-gradient(to bottom, black, transparent)',
@@ -127,7 +127,7 @@ export default function ContactPage() {
               {/* Oversized monogram — quiet dark brand watermark, flat fill. */}
               <span
                 aria-hidden="true"
-                className="block h-52 md:h-72 w-52 md:w-72 mb-10 bg-[#242424] select-none pointer-events-none"
+                className="block h-64 md:h-96 w-64 md:w-96 mb-10 bg-[#242424] select-none pointer-events-none"
                 style={{
                   WebkitMaskImage: 'url(/images/logo.svg)',
                   maskImage: 'url(/images/logo.svg)',
@@ -135,8 +135,8 @@ export default function ContactPage() {
                   maskRepeat: 'no-repeat',
                   WebkitMaskSize: 'contain',
                   maskSize: 'contain',
-                  WebkitMaskPosition: 'left center',
-                  maskPosition: 'left center',
+                  WebkitMaskPosition: 'center',
+                  maskPosition: 'center',
                 }}
               />
               <ScrollReveal trace>
