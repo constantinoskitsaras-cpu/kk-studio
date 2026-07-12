@@ -112,18 +112,6 @@ export default function ContactPage() {
 
             {/* Left — Direct info */}
             <div className="relative">
-              {/* Technical ruler texture — quiet vertical hairlines beside the
-                  monogram, the same "precision instrument" language as the
-                  section-label hairline ticks. No circles/geometry, just lines. */}
-              <div
-                aria-hidden="true"
-                className="hidden md:block absolute top-0 -bottom-16 left-72 w-24 pointer-events-none select-none"
-                style={{
-                  backgroundImage: 'repeating-linear-gradient(to right, #1A1A1A 0px, #1A1A1A 1px, transparent 1px, transparent 12px)',
-                  maskImage: 'linear-gradient(to bottom, black, transparent)',
-                }}
-              />
-
               {/* Oversized monogram — quiet dark brand watermark, flat fill. */}
               <span
                 aria-hidden="true"

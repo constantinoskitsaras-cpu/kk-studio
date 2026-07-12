@@ -173,6 +173,13 @@ body {
 .marquee-mask {
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
           mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  /* Safari sometimes fails to recompute a mask correctly on a container
+     whose child is being transform-animated, unless the masked element
+     itself is promoted to its own compositing layer. Forcing that layer
+     here is what fixes the abrupt/unmasked edge some browsers show. */
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  will-change: transform;
 }
 
 /* ── Reduced motion ──────────────────────────────────────── */
