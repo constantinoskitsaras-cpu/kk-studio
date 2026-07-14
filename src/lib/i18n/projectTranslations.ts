@@ -10,6 +10,21 @@ type ProjectFields = Pick<
 // fields are overridden — technical/data fields (images, vimeoId, year,
 // featured, …) always come from the English source in projects.ts.
 export const projectTranslationsEl: Record<string, Partial<ProjectFields>> = {
+  'bugatti-chiron': {
+    client: 'Προσωπική Δουλειά',
+    category: 'Real-Time Rendering · Unreal Engine 5.8',
+    tags: ['3D Rendering', 'Unreal Engine Viz'],
+    description:
+      'Μια real-time μελέτη της Bugatti Chiron, φτιαγμένη εξ ολοκλήρου σε Unreal Engine 5.8 — ένα σκόπιμο stress test τόσο για το hardware όσο και για το global illumination του Lumen, αποδοσμένο στο σπίτι σε μια RTX 2080 και μελοποιημένο με το Lacrimosa για να ταιριάξει με την ένταση του αυτοκινήτου.',
+    approach:
+      'Real-time global illumination και αντανακλάσεις πιεσμένες στα όρια του Lumen · Physically based shaders για το χρώμα της Chiron, το carbon fiber και το εσωτερικό · Μοντάζ και grade σε DaVinci Resolve · Μουσική επένδυση: Lacrimosa',
+    process:
+      'Φωτισμένο και αποδοσμένο εξ ολοκλήρου μέσα στο viewport της UE5.8, σε μία μόνο RTX 2080 — χωρίς offline renderer, χωρίς κόλπα σε compositing. Οκτώ μήνες μέσα στη βελτίωση αυτού του real-time pipeline, το project φτιάχτηκε συγκεκριμένα για να βρει πού σπάει το hardware και το Lumen, και μετά να το ξεπεράσει.',
+    role: '3D Rendering · Real-Time',
+    software: 'Unreal Engine 5.8 · Lumen',
+    contribution: 'Προσωπικό project — lighting, look development και real-time capture σε Unreal Engine 5.8, με μοντάζ σε DaVinci Resolve.',
+    pullQuote: 'Οκτώ μήνες μέσα σε αυτό το ταξίδι, ακόμα κυνηγώντας το επόμενο επίπεδο φωτορεαλισμού. Αυτό είναι μόνο το πρώτο κεφάλαιο.',
+  },
   'lamborghini-reventon': {
     client: 'Προσωπική Δουλειά',
     category: 'Real-Time Rendering · Unreal Engine 5',

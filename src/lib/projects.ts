@@ -32,6 +32,41 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'bugatti-chiron',
+    title: 'Bugatti Chiron',
+    client: 'Personal Work',
+    category: 'Real-Time Rendering · Unreal Engine 5.8',
+    year: '2026',
+    tags: ['3D Rendering', 'Unreal Engine Viz'],
+    description:
+      'A real-time study of the Bugatti Chiron, built entirely in Unreal Engine 5.8 — a deliberate stress test of both the hardware and Lumen’s global illumination, rendered at home on an RTX 2080 and scored to Lacrimosa to match the car’s intensity.',
+    approach:
+      'Real-time global illumination and reflections pushed to the edge of Lumen · Physically based Chiron paint, carbon fiber, and interior shaders · DaVinci Resolve edit and grade · Scored to Lacrimosa',
+    process:
+      'Lit and captured entirely inside the UE5.8 viewport on a single RTX 2080 — no offline renderer, no compositing shortcuts. Eight months into refining this real-time pipeline, the project was built specifically to find where the hardware and Lumen start to break, then push past it.',
+    role: '3D Rendering · Real-Time',
+    software: 'Unreal Engine 5.8 · Lumen',
+    contribution: 'Personal project — lighting, look development, and real-time capture in Unreal Engine 5.8, edited in DaVinci Resolve.',
+    pullQuote: 'Eight months into this journey, still chasing the next layer of photorealism. This is just the first chapter.',
+    vimeoId: '1209641857',
+    heroImage: '/images/work/bugatti-chiron/bugatti-chiron-08.png',
+    images: [
+      '/images/work/bugatti-chiron/bugatti-chiron-01.png',
+      '/images/work/bugatti-chiron/bugatti-chiron-02.png',
+      '/images/work/bugatti-chiron/bugatti-chiron-03.png',
+      '/images/work/bugatti-chiron/bugatti-chiron-04.png',
+      '/images/work/bugatti-chiron/bugatti-chiron-05.png',
+      '/images/work/bugatti-chiron/bugatti-chiron-06.png',
+      '/images/work/bugatti-chiron/bugatti-chiron-07.png',
+      '/images/work/bugatti-chiron/bugatti-chiron-09.png',
+      '/images/work/bugatti-chiron/bugatti-chiron-10.png',
+      '/images/work/bugatti-chiron/bugatti-chiron-11.png',
+      '/images/work/bugatti-chiron/bugatti-chiron-12.png',
+    ],
+    featured: true,
+    featuredOrder: 1,
+  },
+  {
     slug: 'lamborghini-reventon',
     title: 'Lamborghini Reventón',
     client: 'Personal Work',
@@ -65,7 +100,7 @@ export const projects: Project[] = [
       '/images/work/lamborghini-reventon/lamborghini-12.jpg',
     ],
     featured: true,
-    featuredOrder: 1,
+    featuredOrder: 2,
   },
   {
     slug: 'mclaren-570s',
@@ -95,7 +130,7 @@ export const projects: Project[] = [
       '/images/work/mclaren-570s/mclaren-05.png',
     ],
     featured: true,
-    featuredOrder: 2,
+    featuredOrder: 3,
   },
   {
     slug: 'porsche-bugatti',
@@ -125,7 +160,7 @@ export const projects: Project[] = [
       '/images/work/porsche-bugatti/porsche-bugatti-05.png',
     ],
     featured: true,
-    featuredOrder: 3,
+    featuredOrder: 4,
   },
   {
     slug: 'mercedes-amg',
@@ -153,7 +188,7 @@ export const projects: Project[] = [
       '/images/work/mercedes-amg/mercedes-amg-04.jpg',
     ],
     featured: true,
-    featuredOrder: 4,
+    featuredOrder: 5,
   },
 ]
 

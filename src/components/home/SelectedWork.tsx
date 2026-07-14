@@ -84,7 +84,7 @@ function SectionOpener({ count }: { count: string }) {
 export function SelectedWork() {
   const { locale } = useLocale()
   // Curated proof — the featured frames, not a gallery grid.
-  const frames = featuredProjects.slice(0, 4).map((p) => localizeProject(p, locale))
+  const frames = featuredProjects.slice(0, 5).map((p) => localizeProject(p, locale))
   const count = String(frames.length).padStart(2, '0')
 
   return (
