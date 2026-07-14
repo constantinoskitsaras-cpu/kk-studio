@@ -48,7 +48,7 @@ export const projects: Project[] = [
     software: 'Unreal Engine 5.8 · Lumen',
     contribution: 'Personal project — lighting, look development, and real-time capture in Unreal Engine 5.8, edited in DaVinci Resolve.',
     pullQuote: 'Eight months into this journey, still chasing the next layer of photorealism. This is just the first chapter.',
-    vimeoId: '1209641857',
+    vimeoId: '1209960724',
     heroImage: '/images/work/bugatti-chiron/bugatti-chiron-08.png',
     images: [
       '/images/work/bugatti-chiron/bugatti-chiron-01.png',
