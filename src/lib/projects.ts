@@ -32,6 +32,35 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'aston-martin-db11',
+    title: 'Aston Martin DB11',
+    client: 'Personal Work',
+    category: 'Real-Time Rendering · Unreal Engine 5',
+    year: '2026',
+    tags: ['3D Rendering', 'Unreal Engine Viz'],
+    description:
+      'Everything in this scene was built procedurally — from the terrain in Gaea to the environment generated with Unreal Engine PCG. Fully rendered in real time with Unreal Engine 5, Lumen, and Substrate Materials, pushing the engine to its limits for maximum photorealism.',
+    approach:
+      'Procedural terrain generation in Gaea · Procedural environment scattering with Unreal Engine PCG · Real-time global illumination and materials via Lumen and Substrate · Final color grade in DaVinci Resolve on an ACES workflow',
+    process:
+      'Terrain and environment were built procedurally rather than hand-placed — Gaea for the landscape, PCG for scattering and dressing the scene in Unreal Engine. Every material and light response was computed live through Lumen and Substrate, then graded in DaVinci Resolve on an ACES pipeline.',
+    role: '3D Rendering · Real-Time',
+    software: 'Unreal Engine 5 · Gaea',
+    contribution: 'Personal project — procedural environment, lighting, look development, and real-time capture in Unreal Engine 5.',
+    pullQuote: 'Nothing hand-placed — the terrain, the scatter, the light all built to generate themselves, then pushed for maximum photorealism.',
+    vimeoId: '',
+    heroImage: '/images/work/aston-martin-db11/aston-martin-db11-01.jpg',
+    images: [
+      '/images/work/aston-martin-db11/aston-martin-db11-02.jpg',
+      '/images/work/aston-martin-db11/aston-martin-db11-03.jpg',
+      '/images/work/aston-martin-db11/aston-martin-db11-04.jpg',
+      '/images/work/aston-martin-db11/aston-martin-db11-05.jpg',
+      '/images/work/aston-martin-db11/aston-martin-db11-06.jpg',
+    ],
+    featured: true,
+    featuredOrder: 1,
+  },
+  {
     slug: 'bugatti-chiron',
     title: 'Bugatti Chiron',
     client: 'Personal Work',
@@ -64,7 +93,7 @@ export const projects: Project[] = [
       '/images/work/bugatti-chiron/bugatti-chiron-12.png',
     ],
     featured: true,
-    featuredOrder: 1,
+    featuredOrder: 2,
   },
   {
     slug: 'lamborghini-reventon',
@@ -100,7 +129,7 @@ export const projects: Project[] = [
       '/images/work/lamborghini-reventon/lamborghini-12.jpg',
     ],
     featured: true,
-    featuredOrder: 2,
+    featuredOrder: 3,
   },
   {
     slug: 'mclaren-570s',
@@ -130,7 +159,7 @@ export const projects: Project[] = [
       '/images/work/mclaren-570s/mclaren-05.png',
     ],
     featured: true,
-    featuredOrder: 3,
+    featuredOrder: 4,
   },
   {
     slug: 'porsche-bugatti',
@@ -160,7 +189,7 @@ export const projects: Project[] = [
       '/images/work/porsche-bugatti/porsche-bugatti-05.png',
     ],
     featured: true,
-    featuredOrder: 4,
+    featuredOrder: 5,
   },
   {
     slug: 'mercedes-amg',
@@ -188,7 +217,7 @@ export const projects: Project[] = [
       '/images/work/mercedes-amg/mercedes-amg-04.jpg',
     ],
     featured: true,
-    featuredOrder: 5,
+    featuredOrder: 6,
   },
 ]
 

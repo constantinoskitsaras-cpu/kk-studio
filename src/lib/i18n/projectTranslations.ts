@@ -10,6 +10,21 @@ type ProjectFields = Pick<
 // fields are overridden — technical/data fields (images, vimeoId, year,
 // featured, …) always come from the English source in projects.ts.
 export const projectTranslationsEl: Record<string, Partial<ProjectFields>> = {
+  'aston-martin-db11': {
+    client: 'Προσωπική Δουλειά',
+    category: 'Real-Time Rendering · Unreal Engine 5',
+    tags: ['3D Rendering', 'Unreal Engine Viz'],
+    description:
+      'Όλη η σκηνή χτίστηκε διαδικαστικά (procedurally) — από το terrain στο Gaea μέχρι το περιβάλλον που δημιουργήθηκε με το Unreal Engine PCG. Αποδοσμένο εξ ολοκλήρου σε real time με Unreal Engine 5, Lumen και Substrate Materials, σπρώχνοντας το engine στα όριά του για τον μέγιστο δυνατό φωτορεαλισμό.',
+    approach:
+      'Διαδικαστική δημιουργία terrain στο Gaea · Διαδικαστικό scattering περιβάλλοντος με Unreal Engine PCG · Real-time global illumination και materials μέσω Lumen και Substrate · Τελικό grade σε DaVinci Resolve με ACES workflow',
+    process:
+      'Το terrain και το περιβάλλον χτίστηκαν διαδικαστικά αντί να τοποθετηθούν με το χέρι — Gaea για το τοπίο, PCG για το scattering και το ντύσιμο της σκηνής μέσα στο Unreal Engine. Κάθε υλικό και αντίδραση φωτός υπολογίστηκε ζωντανά μέσω Lumen και Substrate, με τελικό grade σε DaVinci Resolve πάνω σε ACES pipeline.',
+    role: '3D Rendering · Real-Time',
+    software: 'Unreal Engine 5 · Gaea',
+    contribution: 'Προσωπικό project — διαδικαστικό περιβάλλον, lighting, look development και real-time capture σε Unreal Engine 5.',
+    pullQuote: 'Τίποτα τοποθετημένο με το χέρι — το terrain, το scatter, το φως, όλα φτιαγμένα να παράγονται μόνα τους, σπρωγμένα μετά για τον μέγιστο φωτορεαλισμό.',
+  },
   'bugatti-chiron': {
     client: 'Προσωπική Δουλειά',
     category: 'Real-Time Rendering · Unreal Engine 5.8',
