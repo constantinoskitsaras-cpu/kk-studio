@@ -80,7 +80,9 @@ export function WorkDetailContent({
         <div style={{ paddingTop: '72px', backgroundColor: '#090909' }}>
           <div
             className={`relative w-full overflow-hidden ${
-              project.vimeoId ? 'pt-[41.84%]' : 'pt-[75%] md:pt-[56.25%]'
+              project.vimeoId || project.heroAspect === 'cinematic'
+                ? 'pt-[41.84%]'
+                : 'pt-[75%] md:pt-[56.25%]'
             }`}
           >
             <ProjectVisual

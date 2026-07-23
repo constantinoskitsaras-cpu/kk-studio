@@ -25,6 +25,9 @@ export interface Project {
   videoStart?: number
   /** Drop assets at /public/images/work/<slug>/hero.jpg and update this path. */
   heroImage?: string
+  /** Still-image hero frame — 'cinematic' matches the 2.39:1 video band for
+   *  wide-shot covers so object-cover doesn't crop the sides. Default is 16:9. */
+  heroAspect?: 'default' | 'cinematic'
   images: string[]
   featured: boolean
   featuredOrder?: number
@@ -49,11 +52,12 @@ export const projects: Project[] = [
     contribution: 'Personal project — procedural environment, lighting, look development, and real-time capture in Unreal Engine 5.',
     pullQuote: 'Nothing hand-placed — the terrain, the scatter, the light all built to generate themselves, then pushed for maximum photorealism.',
     vimeoId: '',
-    heroImage: '/images/work/aston-martin-db11/aston-martin-db11-04.jpg',
+    heroImage: '/images/work/aston-martin-db11/aston-martin-db11-03.jpg',
+    heroAspect: 'cinematic',
     images: [
       '/images/work/aston-martin-db11/aston-martin-db11-06.jpg',
       '/images/work/aston-martin-db11/aston-martin-db11-05.jpg',
-      '/images/work/aston-martin-db11/aston-martin-db11-03.jpg',
+      '/images/work/aston-martin-db11/aston-martin-db11-04.jpg',
       '/images/work/aston-martin-db11/aston-martin-db11-02.jpg',
       '/images/work/aston-martin-db11/aston-martin-db11-01.jpg',
     ],
