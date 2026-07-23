@@ -48,7 +48,7 @@ export const projects: Project[] = [
     process:
       'Terrain and environment were built procedurally rather than hand-placed — Gaea for the landscape, PCG for scattering and dressing the scene in Unreal Engine. Every material and light response was computed live through Lumen and Substrate, then graded in DaVinci Resolve on an ACES pipeline.',
     role: '3D Rendering · Real-Time',
-    software: 'Unreal Engine 5 · Gaea',
+    software: 'Unreal Engine 5 · Gaea · DaVinci Resolve',
     contribution: 'Personal project — procedural environment, lighting, look development, and real-time capture in Unreal Engine 5.',
     pullQuote: 'Nothing hand-placed — the terrain, the scatter, the light all built to generate themselves, then pushed for maximum photorealism.',
     vimeoId: '',

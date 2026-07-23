@@ -21,7 +21,7 @@ export const projectTranslationsEl: Record<string, Partial<ProjectFields>> = {
     process:
       'Το terrain και το περιβάλλον χτίστηκαν διαδικαστικά αντί να τοποθετηθούν με το χέρι — Gaea για το τοπίο, PCG για το scattering και το ντύσιμο της σκηνής μέσα στο Unreal Engine. Κάθε υλικό και αντίδραση φωτός υπολογίστηκε ζωντανά μέσω Lumen και Substrate, με τελικό grade σε DaVinci Resolve πάνω σε ACES pipeline.',
     role: '3D Rendering · Real-Time',
-    software: 'Unreal Engine 5 · Gaea',
+    software: 'Unreal Engine 5 · Gaea · DaVinci Resolve',
     contribution: 'Προσωπικό project — διαδικαστικό περιβάλλον, lighting, look development και real-time capture σε Unreal Engine 5.',
     pullQuote: 'Τίποτα τοποθετημένο με το χέρι — το terrain, το scatter, το φως, όλα φτιαγμένα να παράγονται μόνα τους, σπρωγμένα μετά για τον μέγιστο φωτορεαλισμό.',
   },
